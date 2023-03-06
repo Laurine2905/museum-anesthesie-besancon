@@ -15,27 +15,7 @@ const router = createRouter({
             path: "/",
             name: "accueil_admin",
             component: ModifsView,
-        },
-        {
-            path: "/albums",
-            name: "albums",
-            component: AlbumsView,
-        },
-        {
-            path: "/artists",
-            name: "artists",
-            component: ArtistsView,
-        },
-        {
-            path: "/about",
-            name: "about",
-            component: AboutView,
-        },
-        {
-            path: "/detail/:idAlbum",
-            name: "detail",
-            component: AlbumDetailView,
-        },
+        }
     ],
 });
 
