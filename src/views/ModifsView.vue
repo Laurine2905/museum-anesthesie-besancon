@@ -1,11 +1,12 @@
 <script setup></script>
 
 <template>
-  <form>
-    <input type="email" name="identifiant" placeholder="Identifiant" />
-    <input type="password" name="mdp" placeholder="Mot de passe" />
-    <input type="submit" name="valider" value="Se connecter" />
-  </form>
+  <main class="accueil_admin">
+    <button>Objets</button>
+    <button>Catégories</button>
+    <button>Salles</button>
+    <button>Histoires</button>
+  </main>
 </template>
 
 <style></style>
