@@ -10,8 +10,10 @@ import { RouterLink, RouterView } from 'vue-router'
         color=#6fa8dc
         density="compact"
     >
+
       <!-- le titre de la barre de navigation -->
       <v-app-bar-title>Espace administrateur</v-app-bar-title>
+
       <!-- les boutons de la barre de navigation-->
       <div class="bandeau_text" block>
         <v-btn variant="outlined" color="black">
