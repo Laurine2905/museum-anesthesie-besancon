@@ -1,32 +1,29 @@
 <template>
-<h1>Les catégories</h1>
 
-  <v-btn @click="AjouterCategorie(objet.id)">Ajouter une nouvelle catégorie</v-btn>
+  <h1>Les salles</h1>
 
-  <h1>Liste des objets</h1>
+  <v-btn href="/addSalle">Ajouter une nouvelle salle</v-btn>
+
+  <h1>Liste des salles</h1>
   <!-- Pour Afficher la liste sous forme de tableau -->
 
   <table>
     <!-- Les intitulé des colonnes -->
     <tr>
-      <th>Nom de la catégorie</th>
-      <th>Modifier</th>
+      <th>Nom de la salle</th>
       <th>Supprimer</th>
     </tr>
     <!-- Si le tableau des catégories est vide -->
-    <tr v-if="!listeC">
-      <td colspan="3">Veuillez patienter, chargement des catégories en cours...</td>
+    <tr v-if="!listeS">
+      <td colspan="2">Veuillez patienter, chargement des salles en cours...</td>
     </tr>
     <!-- Si le tableau des objets n'est pas vide -->
     <!-- On met les données dans les colonnes grâce a une boucle -->
-    <tr v-for="cat of listeC" :key="cat.id">
-      <td>{{ cat.nom }}</td>
+    <tr v-for="salle of listeS" :key="salle.id">
+      <td>{{ salle.nom }}</td>
       <td>
-        <button @click="ModifierCategorie(cat.id)">Modifier</button>
+        <button @click="SupprimerObjet(salle.id)">Supprimer</button>
       </td>
-      <td>
-      <button @click="SupprimerCategorie(cat.id)">Supprimer</button>
-    </td>
     </tr>
   </table>
 

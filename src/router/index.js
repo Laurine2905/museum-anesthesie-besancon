@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import ModifsView from "../views/ModifsView.vue";
 import ObjetsView from "../views/ObjetsView.vue";
 import CategoriesView from "../views/CategoriesView.vue";
+import SallesView from "../views/SallesView.vue";
+import AddSalleView from "../views/AddSalleView.vue";
 
 // === définition des routes de l'application
 // --- principalement les items du menu
@@ -27,6 +29,16 @@ const router = createRouter({
             path: "/categories",
             name: "categories",
             component: CategoriesView,
+        },
+        {
+            path: "/salles",
+            name: "salles",
+            component: SallesView,
+        },
+        {
+            path: "/addSalle",
+            name: "addSalle",
+            component: AddSalleView,
         }
     ],
 });
