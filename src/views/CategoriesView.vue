@@ -1,7 +1,7 @@
 <template>
 <h1>Les catégories</h1>
 
-  <v-btn @click="AjouterCategorie(objet.id)">Ajouter une nouvelle catégorie</v-btn>
+  <v-btn href="/addCategorie">Ajouter une nouvelle catégorie</v-btn>
 
   <h1>Liste des objets</h1>
   <!-- Pour Afficher la liste sous forme de tableau -->

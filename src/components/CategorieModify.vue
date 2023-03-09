@@ -1,17 +1,16 @@
 <template>
 
-  <AddSalleView @addS="handlerAddSalle"></AddSalleView>
+  <AddCategorieView @addC="handlerAddCategorie"></AddCategorieView>
 
-</template>
+ </template>
 
 <script>
 
 import {onMounted, reactive} from "vue";
-import AddSalleView from "../views/AddSalleView.vue";
+import AddCategorieView from "../views/AddCategorieView.vue";
+const listeC = reactive([]);
 
-const listeS = reactive([]);
-
-function handlerAddSalle(nom) {
+function handlerAddCategorie(nom) {
   console.log(nom);
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -28,12 +27,12 @@ function handlerAddSalle(nom) {
       })
       .then((dataJSON) => {
         console.log(dataJSON);
-        getSalles();
+        getCategories();
       })
       .catch((error) => console.log(error));
 }
 
-function getSalles() {
+function getCategories() {
   const fetchOptions = { method: "GET" };
   fetch(url, fetchOptions)
       .then((response) => {
@@ -42,17 +41,17 @@ function getSalles() {
       .then((dataJSON) => {
         console.log(dataJSON);
         // -- vider la liste des choses
-        listeS.splice(0, listeS.length);
+        listeC.splice(0, listeC.length);
         // pour chaque donnée renvoyée par l'API
         //  créer un objet instance de la classe Chose
         //  et l'ajouter dans la liste listeC
-        dataJSON.forEach((v) => listeS.push(new Sale(v.id, v.nom)));
+        dataJSON.forEach((v) => listeC.push(new Categorie(v.id, v.nom)));     //vérifier les attributs de catégorie
       })
       .catch((error) => console.log(error));
 }
 
 onMounted(() => {
-  getSalles();
+  getCategories();
 });
 
 </script>
