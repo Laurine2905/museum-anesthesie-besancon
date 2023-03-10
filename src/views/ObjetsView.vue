@@ -1,6 +1,6 @@
 <template>
 
-  <v-btn @click="AjouterObjet(objet.id)">Ajouter un nouvel objet à la collection</v-btn>
+  <v-btn href="/addObjets">Ajouter un nouvel objet à la collection</v-btn>
 
   <!--
 

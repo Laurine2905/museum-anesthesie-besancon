@@ -6,6 +6,7 @@ import CategoriesView from "../views/CategoriesView.vue";
 import SallesView from "../views/SallesView.vue";
 import AddSalleView from "../views/AddSalleView.vue";
 import AddCategorieView from "@/views/AddCategorieView.vue";
+import AddObjetView from "@/views/AddObjetView.vue";
 
 // === définition des routes de l'application
 // --- principalement les items du menu
@@ -25,6 +26,11 @@ const router = createRouter({
             path: "/objets",
             name: "objets",
             component: ObjetsView,
+        },
+        {
+            path: "/addObjets",
+            name: "addObjets",
+            component: AddObjetView,
         },
         {
             path: "/categories",

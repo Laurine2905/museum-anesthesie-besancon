@@ -26,7 +26,7 @@ export default {
 <template>
 
   <h1>Ajouter une nouvelle catégorie</h1>
-  <p>Pour ajouter une nouvelle catégorie remplissez le formulaire ci-dessous et cliquer sur le bouton "submit".</p>
+  <p>Pour ajouter une nouvelle catégorie remplissez le formulaire ci-dessous et cliquer sur le bouton "valider".</p>
   <p>Une fois la catégorie ajoutée vous serez en mesure de la renseignée comme étant la catégorie d'un objet.</p>
 
   <v-sheet width="300" class="mx-auto">
@@ -35,6 +35,18 @@ export default {
           v-model="nom"
           :rules="rules"
           label="Nom de la catégorie"
+      ></v-text-field>
+      <v-textarea
+          name="input-7-1"
+          variant="filled"
+          label="Description"
+          auto-grow
+          model-value=""
+      ></v-textarea>
+      <v-text-field
+          v-model="url_photo"
+          :rules="rules"
+          label="Lien de l'image"
       ></v-text-field>
       <v-btn type="submit" block class="mt-2">Valider</v-btn>
     </v-form>
