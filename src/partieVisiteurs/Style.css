@@ -276,6 +276,16 @@ body{
 
     input:checked + .slide-container .nav label { display: block; }
 
+/* vidéo page d'accueil*/
+
+#video{
+    display: block;
+    margin: 30px auto;
+    width: 800px;
+    height: 450px;
+    border: solid black 1px;
+}
+
 
 /* pied de page */
 
@@ -292,16 +302,23 @@ body{
         padding-right: 5px;
     }
 
-    #pied_de_page{
+    .pied_de_page{
         list-style-type: none;
-        display: block;
-        text-transform: capitalize;
-        padding-left: 60px;
+        display: inline-block;
+        padding-left: 70px;
+        padding-right: 60px;
+        margin: 0;
+    }
+
+    .pied_de_page a{
+        margin: 0;
+        padding: 3px 0;
+        text-align: left;
     }
 
     #titre_pied{
         text-transform: uppercase;
-        padding-top: 10px;
+        padding-top: 15px;
         padding-left: 20px;
     }
 
