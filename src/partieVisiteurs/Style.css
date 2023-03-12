@@ -5,7 +5,7 @@ html{
     background-color: rgba(255, 121, 0, 0.02);
     width: 100%;
     text-align: justify;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 h1{
@@ -28,6 +28,10 @@ body{
 }
 
 /*en-tête*/
+
+    header{
+        font-size: 15px;
+    }
 
     #en-tete{
         display: flex;
@@ -276,6 +280,20 @@ body{
 
     input:checked + .slide-container .nav label { display: block; }
 
+/* Accueil */
+
+#mini_texte_visite{
+    text-align: center;
+    width: 70%;
+    display: block;
+    margin: 35px auto;
+}
+
+#mini_texte_visite h1{
+    font-size: 25px;
+    color: rgb(255,121,0);
+}
+
 /* vidéo page d'accueil*/
 
 #video{
@@ -292,6 +310,7 @@ body{
     footer{
         background-color:rgb(80, 75, 75);
         color: white;
+        font-size: 15px;
     }
 
     footer a{
@@ -432,3 +451,10 @@ body{
         text-transform: uppercase;
         font-weight: bolder;
     }
+
+
+/* nos collections */
+
+#texte_collection{
+    padding: 10px 20px;
+}
