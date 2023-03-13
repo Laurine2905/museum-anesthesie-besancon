@@ -1,23 +1,29 @@
-console.log("hello");
+console.log("hello collections JS");
+
+const url = "http://localhost:8989/api";
+
+//document.getElementById("click_collection").addEventListener('click', () => {
+//    console.log('btn clicked');
+//});
+
+document.getElementById("click_collection").addEventListener("click", getCategories);
 
 function getCategories(){
-    const url = " https://## NOTRE_API ##/categories";
-    const fetchOptions = {};
+    const fetchOptions = {method : "GET"};
 
-    fetch(url, fetchOptions)
+    fetch(url + "/categories", fetchOptions)
         .then( (response) => {
             console.log("coucou");
             return response.json();
         })
         .then( (dataJSON) => {
             console.log(dataJSON);
-            let categories = dataJSON.results;
-            let catID = dataJSON.results.id_cat;
-            let texthtml = "";
+            let categories = dataJSON._embedded.categories
+            let texteHTML = ""
             for(let cat of categories){
-                texthtml += "<li id = '" +catID+ "'>" + cat.nom + "</li>";
+                texteHTML = texteHTML + '<img src="'+ urlPhoto +'" />' + cat.categorieNom   //id="'+ cat.id_categorie +'"
             }
-            document.getElementById("liste_categories").innerHTML = texthtml;
+            document.getElementById("liste_categories").innerHTML = texteHTML;
         })
         .catch( (error) => {
             console.log(error)
@@ -25,13 +31,41 @@ function getCategories(){
 }
 
 
+// l'entête de la requête
+const headers = {
+    "Content-Type": "application/json",
+};
+const fetchOptions = {  method: "GET" };
+function nosCategories() {
+    console.log("entrée dans la fonction")
+    fetch(url+"/categories", fetchOptions)
+        .then( (response) => {
+            return response.json()
+        })
+        .then( (dataJSON) => {
+            console.log(dataJSON)
+            let categories = dataJSON._embedded.categories
+            let texteHTML = ""
+            for(let cat of categories){
+                texteHTML = texteHTML + '<img src="'+ urlPhoto +'" />' + cat.categorieNom   //id="'+ cat.id_categorie +'"
+            }
+            document.getElementById("liste_categories").innerHTML = texteHTML;
+            //for(let image of document.querySelectorAll("#albums > img")){
+            //    image.addEventListener("click", infosAlbum);
+            //}
+        })
+        .catch( (error) => console.log(error))
+}
+
+
+
+
 document.getElementById("catID").addEventListener("click", getObjetsPourCategorie);
 
 function getObjetsPourCategorie(){
-    const url = " https://## NOTRE_API ##/categories/" + "'catID'";    //event.target.value ?
     const fetchOptions = {};
 
-    fetch(url, fetchOptions)
+    fetch(url + "categories/catID", fetchOptions)//event.target.value ?
         .then( (response) => {
             console.log("coucou bis");
             return response.json();
