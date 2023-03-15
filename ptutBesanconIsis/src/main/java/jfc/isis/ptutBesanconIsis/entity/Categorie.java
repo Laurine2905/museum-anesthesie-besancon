@@ -7,20 +7,17 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
 import lombok.*;
-@Entity
 @Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
+@Entity // Une entité JPA
 public class Categorie {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "categorie_id", insertable = false, updatable = false)
+    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer categorieId;
-    @Basic
-    @Column(name = "categorie_nom")
+    @Column(unique=true)
+    @NonNull
     private String categorieNom;
-    @Basic
-    @Column(name = "categorie_description")
+    @Column(unique=true)
     private String categorieDescription;
-    @Basic
-    @Column(name = "url_photo")
+    @Column(unique=true)
+    @NonNull
     private String urlPhoto;
 }

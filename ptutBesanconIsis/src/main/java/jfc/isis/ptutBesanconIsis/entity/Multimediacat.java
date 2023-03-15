@@ -6,23 +6,16 @@ import lombok.*;
 @Entity
 @Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
 public class Multimediacat {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "multicat_id")
+    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
     private Integer multicatId;
-    @Basic
-    @Column(name = "description")
+    @Column(unique=true)
     private String description;
-    @Basic
-    @Column(name = "url_photocat")
+    @Column(unique=true)
     private String urlPhotocat;
-    @Basic
-    @Column(name = "url_videocat")
+    @Column(unique=true)
     private String urlVideocat;
-    @Basic
-    @Column(name = "url_audiocat")
+    @Column(unique=true)
     private String urlAudiocat;
-    @OneToOne
-    @JoinColumn(name = "categorie_id", referencedColumnName = "categorie_id", nullable = false)
-    private Categorie categorie_id;
+
 }

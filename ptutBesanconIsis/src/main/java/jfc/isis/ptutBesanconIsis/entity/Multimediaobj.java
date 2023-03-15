@@ -6,24 +6,15 @@ import lombok.*;
 @Entity
 @Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
 public class Multimediaobj {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "multiobj_id")
+    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
     private Integer multiobjId;
-
-    @Basic
-    @Column(name = "description")
+    @Column(unique=true)
     private String description;
-    @Basic
-    @Column(name = "url_photoobj")
+    @Column(unique=true)
     private String urlPhotoobj;
-    @Basic
-    @Column(name = "url_videoobj")
+    @Column(unique=true)
     private String urlVideoobj;
-    @Basic
-    @Column(name = "url_audioobj")
+    @Column(unique=true)
     private String urlAudioobj;
-    @OneToOne
-    @JoinColumn(name = "objet_id", referencedColumnName = "objet_id", nullable = false)
-    private Objet objet_id;
 }
