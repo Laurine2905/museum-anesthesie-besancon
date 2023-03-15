@@ -39,5 +39,4 @@ public class Objet {
     @OneToOne
     @JoinColumn(name = "salle_id", referencedColumnName = "salle_id", nullable = false)
     private Salle salle_id;
-
 }
