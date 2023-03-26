@@ -2,8 +2,10 @@ package jfc.isis.ptutBesanconIsis.entity;
 
 import jakarta.persistence.*;
 
+import java.util.TreeSet;
+
 @Entity
-public class Objet {
+public class Objet implements Comparable<Objet>{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "objet_id", insertable = false, updatable = false)
@@ -134,4 +136,12 @@ public class Objet {
         result = 31 * result + (urlPhoto != null ? urlPhoto.hashCode() : 0);
         return result;
     }
+
+    public int compareTo(Objet o) {
+        int ret = 0;
+        if (this.objetNom.compareTo(o.objetNom)<0) ret=-1;
+        if (this.objetNom.compareTo(o.objetNom)>0) ret=1;
+        return ret;
+    }
+
 }

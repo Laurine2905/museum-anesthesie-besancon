@@ -1,9 +1,13 @@
 package jfc.isis.ptutBesanconIsis.entity;
 
+import com.sun.source.tree.Tree;
 import jakarta.persistence.*;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.TreeSet;
 
 @Entity
-public class Categorie {
+public class Categorie implements Comparable<Categorie> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "categorie_id", insertable = false, updatable = false)
@@ -76,4 +80,13 @@ public class Categorie {
         result = 31 * result + (urlPhoto != null ? urlPhoto.hashCode() : 0);
         return result;
     }
+
+
+    public int compareTo(Categorie c) {
+        int ret = 0;
+        if (this.categorieNom.compareTo(c.categorieNom)<0) ret=-1;
+        if (this.categorieNom.compareTo(c.categorieNom)>0) ret=1;
+        return ret;
+    }
+
 }
