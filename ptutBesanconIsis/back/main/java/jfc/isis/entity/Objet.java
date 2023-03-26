@@ -3,6 +3,10 @@ package jfc.isis.entity;
 import jakarta.persistence.*;
 
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
 public class Objet {
@@ -24,5 +28,15 @@ public class Objet {
     @Column(unique=true)
     @NonNull
     private String urlPhoto;
+
+    @ManyToOne(optional = false)
+    @NonNull
+    private Categorie categorie;
+
+    @ManyToOne(optional = false)
+    @NonNull
+    private Salle salle;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "multimedia")
+    private List<Multimediaobj> multimediaobjs = new ArrayList<>();
 
 }

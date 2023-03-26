@@ -18,4 +18,7 @@ public class Multimediacat {
     @Column(unique=true)
     private String urlAudiocat;
 
+    @ManyToOne(optional = false)
+    @NonNull
+    private Categorie categorie;
 }

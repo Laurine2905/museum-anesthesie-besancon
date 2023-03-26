@@ -17,4 +17,8 @@ public class Multimediaobj {
     private String urlVideoobj;
     @Column(unique=true)
     private String urlAudioobj;
+
+    @ManyToOne(optional = false)
+    @NonNull
+    private Objet objet;
 }
