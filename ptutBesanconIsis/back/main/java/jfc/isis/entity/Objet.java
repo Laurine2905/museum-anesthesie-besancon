@@ -1,4 +1,4 @@
-package jfc.isis.ptutBesanconIsis.entity;
+package jfc.isis.entity;
 
 import jakarta.persistence.*;
 

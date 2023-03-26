@@ -1,13 +1,11 @@
-package jfc.isis.ptutBesanconIsis.entity;
+package jfc.isis.entity;
 
 
-import jakarta.persistence.*;
 import lombok.*;
+import jakarta.persistence.*;
 
-@Getter
-@Setter @NoArgsConstructor
-@RequiredArgsConstructor @ToString
-@Entity // Une entité JPA
+@Entity
+@Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
 public class Categorie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

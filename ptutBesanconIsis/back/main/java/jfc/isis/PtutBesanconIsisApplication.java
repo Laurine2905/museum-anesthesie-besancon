@@ -1,4 +1,4 @@
-package jfc.isis.ptutBesanconIsis;
+package jfc.isis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

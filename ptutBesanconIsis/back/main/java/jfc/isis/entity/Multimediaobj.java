@@ -1,21 +1,20 @@
-package jfc.isis.ptutBesanconIsis.entity;
+package jfc.isis.entity;
 
 import jakarta.persistence.*;
 
 import lombok.*;
 @Entity
 @Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
-public class Multimediacat {
+public class Multimediaobj {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull
-    private Integer multicatId;
+    private Integer multiobjId;
     @Column(unique=true)
     private String description;
     @Column(unique=true)
-    private String urlPhotocat;
+    private String urlPhotoobj;
     @Column(unique=true)
-    private String urlVideocat;
+    private String urlVideoobj;
     @Column(unique=true)
-    private String urlAudiocat;
-
+    private String urlAudioobj;
 }

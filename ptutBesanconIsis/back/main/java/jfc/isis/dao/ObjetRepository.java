@@ -1,6 +1,6 @@
-package jfc.isis.ptutBesanconIsis.dao;
+package jfc.isis.dao;
 
-import jfc.isis.ptutBesanconIsis.entity.Objet;
+import jfc.isis.entity.Objet;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ObjetRepository extends JpaRepository<Objet, Integer> {
