@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @ToString
-public class Categorie {
+public class Categorie implements Comparable<Categorie>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -29,4 +29,11 @@ public class Categorie {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
     private List<Multimediacat> multimediacat = new ArrayList<>();
+
+    public int compareTo(Categorie c){
+        int ret = 0;
+        if (this.nom.compareTo(c.nom)<0) ret=-1;
+        if (this.nom.compareTo(c.nom)>0) ret=1;
+        return ret;
+    }
 }
