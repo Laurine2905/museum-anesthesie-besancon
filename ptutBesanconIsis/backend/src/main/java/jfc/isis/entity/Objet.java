@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @ToString
-public class Objet {
+public class Objet implements Comparable<Objet>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -44,4 +44,10 @@ public class Objet {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "objet")
     private List<Multimediaobj> multimediaobjs = new ArrayList<>();
 
+    public int compareTo(Objet o){
+        int ret = 0;
+        if (this.nom.compareTo(o.nom)<0) ret=-1;
+        if (this.nom.compareTo(o.nom)>0) ret=1;
+        return ret;
+    }
 }

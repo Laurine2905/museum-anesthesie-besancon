@@ -1,11 +1,10 @@
-package jfc.isis.ptutBesanconIsis.dao;
+package jfc.isis;
 
-import jfc.isis.ptutBesanconIsis.entity.Categorie;
-import jfc.isis.ptutBesanconIsis.entity.Objet;
+import jfc.isis.dao.CategorieRepository;
+import jfc.isis.entity.Categorie;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.jdbc.Sql;
 
 import static org.hibernate.validator.internal.util.Contracts.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,8 +17,8 @@ public class CategorieRepositoryTest {
 
     @Test
     public void testFindByCategorieNom() {
-        Categorie found = categorieDAO.findByCategorieNom("Appareils d anesthésie");
-        assertEquals(found.getCategorieNom(), "Appareils d anesthésie");
+        Categorie found = categorieDAO.findByNom("Appareils d anesthésie");
+        assertEquals(found.getNom(), "Appareils d anesthésie");
     }
 
     @Test
@@ -29,7 +28,7 @@ public class CategorieRepositoryTest {
 
     @Test
     void testContenuListeDesCategories() {
-        Categorie categorie1 = categorieDAO.findByCategorieNom("Appareils d anesthésie");
+        Categorie categorie1 = categorieDAO.findByNom("Appareils d anesthésie");
         assertTrue(categorieDAO.listeDesCategories().contains(categorie1), "La liste contient la catégorie 1 (Appareils d anesthésie)");
     }
 

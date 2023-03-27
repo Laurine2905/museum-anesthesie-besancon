@@ -8,9 +8,9 @@ import java.util.TreeSet;
 
 public interface ObjetRepository extends JpaRepository<Objet, Integer> {
 
-    Objet findByObjetNom(String objetNom);
+    Objet findByNom(String nom);
 
-    // SQL : formulée sur le modèle logique de données, il faut connaître la clé étrangère
+    // requête SQL retournant la liste des objets d'une catégorie triés par ordre alphabétique
     @Query(value="SELECT * FROM Objet WHERE categorie_id = :idDeLaCategorie", nativeQuery = true)
     TreeSet<Objet> getObjetsParCategorie(int idDeLaCategorie);
 
