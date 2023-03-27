@@ -30,6 +30,58 @@
 </template>
 
 <script setup>
+import {onMounted, reactive} from "vue";
+const url = "http://localhost:8989/api";
+
+//let listeS = reactive([]);
+
+
+import {BACKEND, doAjaxRequest} from "../api";
+// Pour réinitialiser le formuaire
+const salleVide = {
+  salleNom: ""
+};
+let data = reactive({
+  // Les données saisies dans le formulaire
+  formulaireSalle: { ...salleVide },
+  // La liste des catégories affichée sous forme de table
+  listeS: []
+});
+function chargeSalles() {
+  console.log("coucou chargerSalles");
+  // Appel à l'API pour avoir la liste des catégories
+  // Trié par code, descendant
+  // Verbe HTTP GET par défaut
+  doAjaxRequest(BACKEND + "/api/salles")
+      .then((json) => {
+        data.listeSalles = json._embedded.salles;
+      })
+      .catch((error) => alert(error.message));
+}
+
+
+function getSalles() {
+  const fetchOptions = { method: "GET", mode: "no-cors" };
+  console.log("coucou getSalles");
+  fetch(url, fetchOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((dataJSON) => {
+        console.log(dataJSON);
+        // -- vider la liste des choses
+        listeS.splice(0, listeS.length);
+        // pour chaque donnée renvoyée par l'API
+        //  créer un objet instance de la classe Chose
+        //  et l'ajouter dans la liste listeC
+        dataJSON.forEach((v) => listeS.push(new Salle(v.id, v.salleNom)));
+      })
+      .catch((error) => console.log(error));
+}
+
+
+// A l'affichage du composant, on affiche la liste
+onMounted(chargeSalles);
 
 </script>
 

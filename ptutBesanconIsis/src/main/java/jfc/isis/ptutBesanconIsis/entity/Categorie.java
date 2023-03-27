@@ -1,7 +1,6 @@
 package jfc.isis.ptutBesanconIsis.entity;
 
 import jakarta.persistence.*;
-
 @Entity
 public class Categorie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)

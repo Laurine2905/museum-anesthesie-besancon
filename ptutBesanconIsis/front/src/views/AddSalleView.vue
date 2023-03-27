@@ -1,26 +1,53 @@
 <script setup>
 import { ref } from "vue";
-// -- donnée réactive pour la saisie du libellé
-const nom = ref("");
+const salleNom = ref("");
 
-const emit = defineEmits(["addS"]);
+const url = "http://localhost:8989/api";
 
-</script>
-
-
-<script>
-export default {
-  data: () => ({
-    nom: '',
-    rules: [
-      value => {
-        if (value) return true
-
-        return "Vous devez renseigner le nom d'une nouvelle salle."
-      },
-    ],
-  }),
+function handlerAddSalle(salleNom) {
+  console.log(salleNom);
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  // --  le libelle de la nouvelle chose est envoyé au serveur
+  //  via le body de la req AJAX
+  const fetchOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: JSON.stringify({ salleNom: salleNom }),
+  };
+  fetch(url + "/salles", fetchOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((dataJSON) => {
+        console.log(dataJSON);
+        getSalles();
+      })
+      .catch((error) => console.log(error));
 }
+
+
+
+function ajouteCategorie() {
+  // Ajouter une catégorie avec les données du formulaire
+  const options = {
+    method: "POST", // Verbe HTTP POST pour ajouter un enregistrement
+    body: JSON.stringify(data.formulaireCategorie),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  doAjaxRequest(BACKEND + "/api/categories", options)
+      .then(() => {
+        // Réinitialiser le formulaire
+        data.formulaireCategorie = { ...categorieVide };
+        // Recharger la liste des catégories
+        chargeCategories();
+      })
+      .catch((error) => alert(error.message));
+}
+
+
 </script>
 
 <template>
@@ -30,10 +57,9 @@ export default {
   <p>Une fois la salle ajoutée vous serez en mesure de la renseignée comme étant la salle d'exposition d'un objet.</p>
 
   <v-sheet width="300" class="mx-auto">
-    <v-form @submit.prevent="$emit('addS', nom)">
+    <v-form @submit.prevent=handlerAddSalle(salleNom)>
       <v-text-field
-          v-model="nom"
-          :rules="rules"
+          v-model="salleNom"
           label="Nom de la salle"
       ></v-text-field>
       <v-btn type="submit" block class="mt-2">Valider</v-btn>

@@ -455,6 +455,28 @@ body{
 
 /* nos collections */
 
-#texte_collection{
-    padding: 10px 20px;
+    #texte_collection{
+        padding: 10px 20px;
+    }
+
+    #liste_categories{
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(5, 20%);
+        text-align: center;
+    }
+
+    #liste_categories img{
+        height: 200px;
+        max-width: 100%;
+    }
+
+
+/* visite virtuelle */
+
+#visite{
+    width: 99%;
+    height: 500px;
+    margin: 15px 5px;
+    padding: 0;
 }
