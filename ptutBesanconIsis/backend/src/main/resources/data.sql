@@ -23,5 +23,6 @@ INSERT INTO MultimediaObj(id,description, URL_photoObj, URL_audioObj, URL_videoO
     (1,'je suis une description d un objet multimedia', NULL, NULL, NULL, (select id from objet where nom ='Heidbrink'));
 ALTER TABLE MultimediaObj ALTER COLUMN id RESTART WITH 2;
 
-
+INSERT INTO Utilisateur(login,mdp,admin) VALUES
+    ('musee','besancon', true);
     
