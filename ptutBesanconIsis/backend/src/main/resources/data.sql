@@ -1,8 +1,8 @@
 -- Initialisation des tables
 INSERT INTO Categorie(id, nom, description, url_photo) VALUES
     (1,'Appareils d anesthésie', NULL,'https://photos.google.com/photo/AF1QipNpiGCTV_NsLZr6LX6TBP0xmsoKYVVcr-UM3Au8'), -- Les clés sont auto-générées
-    (2,'Ventilateur d anesthésie', NULL,'https://photos.google.com/photo/AF1QipOi2cm-3IxlCJ4DjdonRC2jGf95-FwJl16kyZBk'),
-    (3,'Ventilateur de réanimation', 'je suis une description','https://photos.google.com/photo/AF1QipOaUupqUsDpyTBMaZMIJ6TZBrnlj-QqV2hyaQ40');
+    (2,'Ventilateur d anesthésie', NULL,'https://drive.google.com/file/d/1MryecjMZ7mESgG5Hi7MtIO1DKOVK5RBb/view?usp=share_link'),
+    (3,'Ventilateur de réanimation', 'je suis une description','https://scontent-cdg4-2.xx.fbcdn.net/v/t39.30808-6/337358627_6186424044729699_4915273017743968142_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=9267fe&_nc_ohc=p15QuXjnOwAAX_MuKB8&_nc_ht=scontent-cdg4-2.xx&oh=00_AfAyMDcP-_mhcvful4HwTAE6NNNfm3MV7Rgj2LHPNz7-Pw&oe=64265126');
 ALTER TABLE Categorie ALTER COLUMN id RESTART WITH 4;
 
 INSERT INTO Salle (id,nom) VALUES

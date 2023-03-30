@@ -1,25 +1,26 @@
 <template>
 
-  <AddCategorieView @addC="handlerAddCategorie"></AddCategorieView>
+  <AddCategorieView @addCat="handlerAddCategorie"></AddCategorieView>
 
  </template>
 
 <script>
 
-import {onMounted, reactive} from "vue";
-import AddCategorieView from "../views/AddCategorieView.vue";
-const listeC = reactive([]);
+// PROBLEME : @addCat ne fonctionne pas, à voir avec les filles
 
-function handlerAddCategorie(nom) {
+const url = "http://localhost:8989/api/categories";
+
+function handlerAddCategorie(nom, description, urlPhoto) {
   console.log(nom);
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
+  console.log(myHeaders);
   // --  le libelle de la nouvelle chose est envoyé au serveur
   //  via le body de la req AJAX
   const fetchOptions = {
     method: "POST",
     headers: myHeaders,
-    body: JSON.stringify({ nom: nom }),
+    body: JSON.stringify({ nom: nom, description: description, urlPhoto: urlPhoto }),
   };
   fetch(url, fetchOptions)
       .then((response) => {
@@ -27,32 +28,10 @@ function handlerAddCategorie(nom) {
       })
       .then((dataJSON) => {
         console.log(dataJSON);
-        getCategories();
       })
       .catch((error) => console.log(error));
 }
 
-function getCategories() {
-  const fetchOptions = { method: "GET" };
-  fetch(url, fetchOptions)
-      .then((response) => {
-        return response.json();
-      })
-      .then((dataJSON) => {
-        console.log(dataJSON);
-        // -- vider la liste des choses
-        listeC.splice(0, listeC.length);
-        // pour chaque donnée renvoyée par l'API
-        //  créer un objet instance de la classe Chose
-        //  et l'ajouter dans la liste listeC
-        dataJSON.forEach((v) => listeC.push(new Categorie(v.id, v.nom)));     //vérifier les attributs de catégorie
-      })
-      .catch((error) => console.log(error));
-}
-
-onMounted(() => {
-  getCategories();
-});
 
 </script>
 

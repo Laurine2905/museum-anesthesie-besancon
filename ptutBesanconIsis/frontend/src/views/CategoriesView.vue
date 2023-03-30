@@ -14,12 +14,12 @@
       <th>Supprimer</th>
     </tr>
     <!-- Si le tableau des catégories est vide -->
-    <tr v-if="!listeC">
+    <tr v-if="!listeCat">
       <td colspan="3">Veuillez patienter, chargement des catégories en cours...</td>
     </tr>
-    <!-- Si le tableau des objets n'est pas vide -->
+    <!-- Si le tableau des catégories n'est pas vide -->
     <!-- On met les données dans les colonnes grâce a une boucle -->
-    <tr v-for="cat of listeC" :key="cat.id">
+    <tr v-for="cat of listeCat" :key="cat.id">
       <td>{{ cat.nom }}</td>
       <td>
         <button @click="ModifierCategorie(cat.id)">Modifier</button>
@@ -33,6 +33,28 @@
 </template>
 
 <script setup>
+import CategorieModify from "../components/CategorieModify.vue";
+import { reactive, onMounted } from "vue";
+
+let listeCat = reactive([]);
+
+let url = "http://localhost:8989/api/categories";
+function chargeCategories(url = "http://localhost:8989/api/categories") {
+  const fetchOptions = { method: "GET" };
+  fetch(url, fetchOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((dataJSON) => {
+        listeCat = dataJSON._embedded.categories;
+        console.log(listeCat);
+      })
+      .catch((error) => console.log(error));
+}
+
+onMounted(() => {
+  chargeCategories();
+});
 
 </script>
 
