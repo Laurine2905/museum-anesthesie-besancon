@@ -1,5 +1,5 @@
 // L'adresse du backend local
-const BACKEND = 'http://localhost:8989';
+const BACKEND = 'http://localhost:8989/api';
 
 
 /**

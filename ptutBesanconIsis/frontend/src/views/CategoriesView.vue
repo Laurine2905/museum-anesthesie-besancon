@@ -19,7 +19,7 @@
     </tr>
     <!-- Si le tableau des catégories n'est pas vide -->
     <!-- On met les données dans les colonnes grâce a une boucle -->
-    <tr v-for="cat of listeCat" :key="cat.id">
+    <tr v-for="cat in listeCat" :key="cat.id">
       <td>{{ cat.nom }}</td>
       <td>
         <button @click="ModifierCategorie(cat.id)">Modifier</button>
@@ -35,10 +35,11 @@
 <script setup>
 import CategorieModify from "../components/CategorieModify.vue";
 import { reactive, onMounted } from "vue";
+import {doAjaxRequest} from "@/api";
 
 let listeCat = reactive([]);
 
-let url = "http://localhost:8989/api/categories";
+const url = "http://localhost:8989/api/categories";
 function chargeCategories(url = "http://localhost:8989/api/categories") {
   const fetchOptions = { method: "GET" };
   fetch(url, fetchOptions)
@@ -50,6 +51,13 @@ function chargeCategories(url = "http://localhost:8989/api/categories") {
         console.log(listeCat);
       })
       .catch((error) => console.log(error));
+}
+
+// n'a pas pu être vérifié puisque l'affichage du tableau fait des siennes
+function SupprimerCategorie(id) {
+  doAjaxRequest(id, { method: "DELETE" })
+      .then(chargeCategories)
+      .catch((error) => alert(error.message));
 }
 
 onMounted(() => {

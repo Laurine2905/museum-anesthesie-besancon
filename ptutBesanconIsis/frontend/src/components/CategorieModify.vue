@@ -1,12 +1,11 @@
-<template>
-
-  <AddCategorieView @addCat="handlerAddCategorie"></AddCategorieView>
-
- </template>
-
 <script>
 
 // PROBLEME : @addCat ne fonctionne pas, à voir avec les filles
+// de même pour @delteCat
+// Ces deux pb sont temporairement solutionnés en écrivant les fonctions directement dans la view
+
+import CategoriesView from "@/views/CategoriesView.vue";
+import AddCategorieView from "@/views/AddCategorieView.vue";
 
 const url = "http://localhost:8989/api/categories";
 
@@ -33,7 +32,31 @@ function handlerAddCategorie(nom, description, urlPhoto) {
 }
 
 
+function handlerDeleteCategorie(id) {
+  console.log(id);
+  const fetchOptions = {
+    method: "DELETE",
+  };
+  // -- l'id de la chose à supprimer doit être
+  //  ajouté à la fin de l'url
+  fetch(url + "/" + id, fetchOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((dataJSON) => {
+        console.log(dataJSON);
+      })
+      .catch((error) => console.log(error));
+}
+
 </script>
+
+<template>
+
+  <AddCategorieView @addCat="handlerAddCategorie"></AddCategorieView>
+  <CategoriesView @deleteCat="handlerDeleteCategorie"></CategoriesView>
+
+</template>
 
 <style scoped>
 

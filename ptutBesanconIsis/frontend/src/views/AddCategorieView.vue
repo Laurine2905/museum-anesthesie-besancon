@@ -49,7 +49,7 @@ function handlerAddCategorie(nom, description, urlPhoto) {
       ></v-text-field>
       <v-text-field
           v-model="description"
-          label="Nom de la catégorie"
+          label="Description de la catégorie"
       ></v-text-field>
       <!--
           <v-textarea
