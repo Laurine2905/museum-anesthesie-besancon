@@ -14,10 +14,20 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 @Configuration
 public class SpringDataRestConfig
         implements RepositoryRestConfigurer {
-
+    @Autowired
+    private EntityManager entityManager;
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
 
+        // Expose les id de toutes les entités dans l'API REST
+        config
+                .exposeIdsFor(entityManager
+                        .getMetamodel()
+                        .getEntities()
+                        .stream()
+                        .map(Type::getJavaType)
+                        .toArray(Class[]::new)
+                );
 
     // Autorise les requêtes CORS
     cors.addMapping("/**") // Toutes les adresses sont autorisées
