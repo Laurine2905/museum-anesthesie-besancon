@@ -32,7 +32,7 @@ public class Objet implements Comparable<Objet>{
     private Integer nbPossession;
     @Column(unique = true)
     @NonNull
-    private String urlPhoto;
+    private byte[] urlPhoto;
 
     @ManyToOne(optional = false)
     @NonNull
