@@ -41,6 +41,9 @@ public class Objet implements Comparable<Objet>{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "objet")
     private List<Multimedia> multimedia = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objet")
+    private List<ImageData> imageData = new ArrayList<>();
+
     public int compareTo(Objet o){
         int ret = 0;
         if (this.nom.compareTo(o.nom)<0) ret=-1;
