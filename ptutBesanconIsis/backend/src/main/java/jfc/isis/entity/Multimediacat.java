@@ -17,8 +17,7 @@ public class Multimediacat {
     private Integer id;
     @Column(unique = true)
     private String description;
-    @Column(unique = true)
-    private String urlPhotocat;
+
     @Column(unique = true)
     private String urlVideocat;
     @Column(unique = true)
