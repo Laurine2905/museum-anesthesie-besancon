@@ -17,8 +17,8 @@ ALTER TABLE Objet ALTER COLUMN id RESTART WITH 2;
 
 INSERT INTO Multimedia(id,description, URL_audioCat, URL_videoCat, categorie_id, objet_id ) VALUES
     (1,'je suis une description d une categorie multimedia',  NULL, NULL, (select id from categorie where nom ='Ventilateur de réanimation'), NULL),
-(2,'je suis une description d un objet multimedia', NULL, NULL, NULL, (select id from objet where nom ='Heidbrink'));
-LTER TABLE Multimedia ALTER COLUMN id RESTART WITH 3;
+    (2,'je suis une description d un objet multimedia', NULL, NULL, NULL, (select id from objet where nom ='Heidbrink'));
+ALTER TABLE Multimedia ALTER COLUMN id RESTART WITH 3;
 
 INSERT INTO Utilisateur(login,mdp,admin) VALUES
     ('musee','besancon', true);
