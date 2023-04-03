@@ -27,7 +27,8 @@ public class Categorie implements Comparable<Categorie>{
     private List<Objet> objet = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
-    private List<Multimediacat> multimediacat = new ArrayList<>();
+    private List<Multimedia> multimediacat = new ArrayList<>();
+
 
     public int compareTo(Categorie c){
         int ret = 0;

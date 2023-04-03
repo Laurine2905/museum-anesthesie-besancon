@@ -15,13 +15,10 @@ INSERT INTO Objet(id,nom, annee, createur, pays, description, nb_Possession, cat
     (1,'Heidbrink', '1945', 'US Army', 'USA', 'Surplus de l US Army', '1', (select id from categorie where nom='Appareils d anesthésie'), (select id from salle where nom='Salle A') );
 ALTER TABLE Objet ALTER COLUMN id RESTART WITH 2;
 
-INSERT INTO MultimediaCat(id,description, URL_audioCat, URL_videoCat, categorie_id ) VALUES
-    (1,'je suis une description d une categorie multimedia',  NULL, NULL, (select id from categorie where nom ='Ventilateur de réanimation'));
-ALTER TABLE MultimediaCat ALTER COLUMN id RESTART WITH 2;
-
-INSERT INTO MultimediaObj(id,description, URL_audioObj, URL_videoObj, objet_id ) VALUES
-    (1,'je suis une description d un objet multimedia', NULL, NULL, (select id from objet where nom ='Heidbrink'));
-ALTER TABLE MultimediaObj ALTER COLUMN id RESTART WITH 2;
+INSERT INTO Multimedia(id,description, URL_audioCat, URL_videoCat, categorie_id, objet_id ) VALUES
+    (1,'je suis une description d une categorie multimedia',  NULL, NULL, (select id from categorie where nom ='Ventilateur de réanimation'), NULL),
+(2,'je suis une description d un objet multimedia', NULL, NULL, NULL, (select id from objet where nom ='Heidbrink'));
+LTER TABLE Multimedia ALTER COLUMN id RESTART WITH 3;
 
 INSERT INTO Utilisateur(login,mdp,admin) VALUES
     ('musee','besancon', true);

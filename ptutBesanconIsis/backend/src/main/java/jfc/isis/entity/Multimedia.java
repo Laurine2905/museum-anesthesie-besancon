@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @ToString
-public class Multimediaobj {
+public class Multimedia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull
@@ -19,11 +19,13 @@ public class Multimediaobj {
     private String description;
 
     @Column(unique = true)
-    private String urlVideoobj;
+    private String urlVideocat;
     @Column(unique = true)
-    private String urlAudioobj;
+    private String urlAudiocat;
 
-    @ManyToOne(optional = false)
-    @NonNull
+    @ManyToOne(optional = true)
+    private Categorie categorie;
+
+    @ManyToOne(optional = true)
     private Objet objet;
 }
