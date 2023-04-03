@@ -42,7 +42,7 @@ public class Objet implements Comparable<Objet>{
     @NonNull
     private Salle salle;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "objet")
-    private List<Multimediaobj> multimediaobjs = new ArrayList<>();
+    private List<Multimediaobj> multimediaobj = new ArrayList<>();
 
     public int compareTo(Objet o){
         int ret = 0;
