@@ -30,9 +30,6 @@ public class Objet implements Comparable<Objet>{
     private String description;
     @Column(unique = true)
     private Integer nbPossession;
-    @Column(unique = true)
-    @NonNull
-    private byte[] urlPhoto;
 
     @ManyToOne(optional = false)
     @NonNull

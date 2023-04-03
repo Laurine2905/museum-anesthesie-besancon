@@ -17,8 +17,7 @@ public class Multimediaobj {
     private Integer id;
     @Column(unique = true)
     private String description;
-    @Column(unique = true)
-    private String urlPhotoobj;
+
     @Column(unique = true)
     private String urlVideoobj;
     @Column(unique = true)

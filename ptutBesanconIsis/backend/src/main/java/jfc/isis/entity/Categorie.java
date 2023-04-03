@@ -21,9 +21,7 @@ public class Categorie implements Comparable<Categorie>{
     private String nom;
     @Column(unique = true)
     private String description;
-    @Column(unique = true)
-    @NonNull
-    private String urlPhoto;
+
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
     private List<Objet> objet = new ArrayList<>();
