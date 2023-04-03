@@ -16,6 +16,8 @@ import java.util.List;
 public class Objet implements Comparable<Objet>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
+    @Setter(AccessLevel.NONE) // la clé est auto-générée par la BD, pas de "setter"
     private Integer id;
     @Column(unique = true)
     @NonNull
@@ -30,9 +32,6 @@ public class Objet implements Comparable<Objet>{
     private String description;
     @Column(unique = true)
     private Integer nbPossession;
-    @Column(unique = true)
-    @NonNull
-    private String urlPhoto;
 
     @ManyToOne(optional = false)
     @NonNull
@@ -42,7 +41,10 @@ public class Objet implements Comparable<Objet>{
     @NonNull
     private Salle salle;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "objet")
-    private List<Multimediaobj> multimediaobjs = new ArrayList<>();
+    private List<Multimedia> multimedia = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objet")
+    private List<ImageData> imageData = new ArrayList<>();
 
     public int compareTo(Objet o){
         int ret = 0;

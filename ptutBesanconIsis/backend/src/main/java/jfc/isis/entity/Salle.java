@@ -16,6 +16,8 @@ import java.util.List;
 public class Salle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @NonNull
+    @Setter(AccessLevel.NONE) // la clé est auto-générée par la BD, pas de "setter"
     private Integer id;
     @Column(unique = true)
     @NonNull

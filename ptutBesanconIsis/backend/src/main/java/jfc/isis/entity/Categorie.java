@@ -14,22 +14,23 @@ import java.util.List;
 public class Categorie implements Comparable<Categorie>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.NONE) // la clé est auto-générée par la BD, On ne veut pas de "setter"
+    @Setter(AccessLevel.NONE) // la clé est auto-générée par la BD, pas de "setter"
     private Integer id;
     @Column(unique = true)
     @NonNull
     private String nom;
     @Column(unique = true)
     private String description;
-    @Column(unique = true)
-    @NonNull
-    private String urlPhoto;
+
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
     private List<Objet> objet = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
-    private List<Multimediacat> multimediacat = new ArrayList<>();
+    private List<Multimedia> multimedia = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
+    private List<ImageData> imageData = new ArrayList<>();
 
     public int compareTo(Categorie c){
         int ret = 0;
