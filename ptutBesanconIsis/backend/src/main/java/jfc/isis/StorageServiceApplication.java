@@ -14,12 +14,14 @@ import java.io.IOException;
 
 @SpringBootApplication
 @RestController
+// pour faire des actions sur l'image il faut utiliser /image
 @RequestMapping("/image")
 public class StorageServiceApplication {
 
     @Autowired
     private StorageService service;
 
+    // on utilise la fonction upload pour uppload la photo dans notre base de donnée
     @PostMapping
     public ResponseEntity<?> uploadImage(@RequestParam("image")MultipartFile file) throws IOException {
         String uploadImage = service.uploadImage(file);
@@ -27,6 +29,7 @@ public class StorageServiceApplication {
                 .body(uploadImage);
     }
 
+    // on peut egalement telecharger une photo (non utilise pour l'instant)
     @GetMapping("/{fileName}")
     public ResponseEntity<?> downloadImage(@PathVariable String fileName){
         byte[] imageData=service.downloadImage(fileName);

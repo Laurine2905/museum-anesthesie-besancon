@@ -14,6 +14,7 @@ public class Multimedia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull
+    @Setter(AccessLevel.NONE) // la clé est auto-générée par la BD, pas de "setter"
     private Integer id;
     @Column(unique = true)
     private String description;

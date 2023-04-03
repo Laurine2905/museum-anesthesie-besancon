@@ -16,6 +16,8 @@ import java.util.List;
 public class Objet implements Comparable<Objet>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
+    @Setter(AccessLevel.NONE) // la clé est auto-générée par la BD, pas de "setter"
     private Integer id;
     @Column(unique = true)
     @NonNull

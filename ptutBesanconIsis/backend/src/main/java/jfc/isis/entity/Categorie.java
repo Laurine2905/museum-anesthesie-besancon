@@ -14,7 +14,7 @@ import java.util.List;
 public class Categorie implements Comparable<Categorie>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.NONE) // la clé est auto-générée par la BD, On ne veut pas de "setter"
+    @Setter(AccessLevel.NONE) // la clé est auto-générée par la BD, pas de "setter"
     private Integer id;
     @Column(unique = true)
     @NonNull
