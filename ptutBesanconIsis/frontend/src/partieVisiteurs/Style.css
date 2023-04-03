@@ -145,8 +145,27 @@ body{
 
     #texte_presentation{
         flex: 1;
+        margin: 15px;
+        text-align: justify;
     }
 
+    #mini_texte_visite{
+        text-align: center;
+        width: 70%;
+        display: block;
+        margin: 35px auto;
+    }
+
+    #mini_texte_visite h1{
+        font-size: 25px;
+        color: rgb(255,121,0);
+    }
+
+    #texte_presentation h1{
+        font-size: 25px;
+        color: rgb(255,121,0);
+        text-align: center;
+    }
 
 /*carrousel*/
 
@@ -280,20 +299,6 @@ body{
 
     input:checked + .slide-container .nav label { display: block; }
 
-/* Accueil */
-
-#mini_texte_visite{
-    text-align: center;
-    width: 70%;
-    display: block;
-    margin: 35px auto;
-}
-
-#mini_texte_visite h1{
-    font-size: 25px;
-    color: rgb(255,121,0);
-}
-
 /* vidéo page d'accueil*/
 
 #video{
@@ -366,12 +371,12 @@ body{
         margin: 0px;
     }
 
-    #col1{
+    .col1{
         padding: 0px;
         margin: 0px;
     }
 
-    #col2 caption{
+    .col2 caption{
         margin-top: 10px;
         margin-bottom: 10px;
         text-transform: uppercase;
@@ -379,16 +384,16 @@ body{
         text-align: center;
     }
 
-    #col2{
+    .col2{
         padding: 0px;
         margin: 0px;
     }
 
-    #col2 tr{
+    .col2 tr{
         width: 100%;
     }
 
-    #col2 td{
+    .col2 td{
         height: 25px;
         margin: 0px;
         padding: 0px 20px;
@@ -396,13 +401,15 @@ body{
 
     hr{
         border-color: rgb(255,121,0);
-        border-style: 2px solid;
         border-style: double;
         margin-right: 0px;
         margin-left: 0px;
         margin-top: 15px;
         margin-bottom: 15px;
         width: 99%;
+    }
+    #horaires .td{
+        text-align: justify;
     }
 
     iframe{
@@ -421,7 +428,7 @@ body{
     }
 
     #instructions_acces{
-        text-align: center;
+        text-align: justify;
         margin-top: 15px;
     }
 
@@ -479,4 +486,46 @@ body{
     height: 500px;
     margin: 15px 5px;
     padding: 0;
+}
+
+/* Qui sommes nous ? */
+
+#presentation_musee{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 0px;
+    padding: 0px;
+}
+
+#devanture_musee{
+    height: auto;
+    width: 98%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
+#texte_musee{
+    margin: 10px 15px;
+}
+
+.en-gras{
+    font-weight: bold;
+}
+#presentation_musee h1{
+    font-size: 25px;
+    color: rgb(255,121,0);
+    text-align: center;
+    text-transform: capitalize;
+}
+#presentation_musee h2{
+    font-size: 18px;
+    color: black;
+    text-align: left;
+    text-transform: capitalize;
+    margin-left: 20px;
+}
+
+#presentation_musee .col1 p{
+    margin-left: 20px;
 }

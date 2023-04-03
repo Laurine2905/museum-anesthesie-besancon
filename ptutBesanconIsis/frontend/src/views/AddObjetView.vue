@@ -8,21 +8,6 @@ const emit = defineEmits(["addC"]);
 </script>
 
 
-<script>
-export default {
-  data: () => ({
-    nom: '',
-    rules: [
-      value => {
-        if (value) return true
-
-        return "Vous devez renseigner le nom d'une nouvelle catégorie."
-      },
-    ],
-  }),
-}
-</script>
-
 <template>
 
   <h1>Ajouter un nouvel objet</h1>
@@ -55,13 +40,11 @@ export default {
           label="Pays de création de l'objet"
           type="text"
       ></v-text-field>
-      <v-textarea
-          name="input-7-1"
-          variant="filled"
+      <v-text-field
+          v-model="description"
           label="Description"
-          auto-grow
-          model-value=""
-      ></v-textarea>
+          type="text"
+      ></v-text-field>
       <v-text-field
           v-model="nb_possession"
           :rules="rules"
@@ -78,6 +61,10 @@ export default {
           :rules="rules"
           label="Catégorie de l'objet"
           type="Categorie"
+      ></v-text-field>
+      <v-text-field
+          v-model="salle"
+          label="Salle d'exposition"
       ></v-text-field>
       <v-btn type="submit" block class="mt-2">Valider</v-btn>
     </v-container>

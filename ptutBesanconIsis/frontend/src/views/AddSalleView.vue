@@ -4,8 +4,8 @@ const salleNom = ref("");
 
 const url = "http://localhost:8989/api";
 
-function handlerAddSalle(salleNom) {
-  console.log(salleNom);
+function handlerAddSalle(nom) {
+  console.log(nom);
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   // --  le libelle de la nouvelle chose est envoyé au serveur
@@ -13,7 +13,7 @@ function handlerAddSalle(salleNom) {
   const fetchOptions = {
     method: "POST",
     headers: myHeaders,
-    body: JSON.stringify({ salleNom: salleNom }),
+    body: JSON.stringify({ nom: nom }),
   };
   fetch(url + "/salles", fetchOptions)
       .then((response) => {
@@ -21,30 +21,8 @@ function handlerAddSalle(salleNom) {
       })
       .then((dataJSON) => {
         console.log(dataJSON);
-        getSalles();
       })
       .catch((error) => console.log(error));
-}
-
-
-
-function ajouteCategorie() {
-  // Ajouter une catégorie avec les données du formulaire
-  const options = {
-    method: "POST", // Verbe HTTP POST pour ajouter un enregistrement
-    body: JSON.stringify(data.formulaireCategorie),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  doAjaxRequest(BACKEND + "/api/categories", options)
-      .then(() => {
-        // Réinitialiser le formulaire
-        data.formulaireCategorie = { ...categorieVide };
-        // Recharger la liste des catégories
-        chargeCategories();
-      })
-      .catch((error) => alert(error.message));
 }
 
 

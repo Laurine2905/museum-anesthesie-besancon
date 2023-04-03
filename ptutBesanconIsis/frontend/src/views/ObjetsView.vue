@@ -2,38 +2,6 @@
 
   <v-btn href="/addObjets">Ajouter un nouvel objet à la collection</v-btn>
 
-  <!--
-
-  <label for="categorie">Sélectionner la catégorie d'objet voulue : </label>
-  <select id="categorie" name="categorie">
-    <option value="test" selected="selected">Testdfghjk</option>
-    <option value="test1">Test</option>
-    <option value="test2">Test</option>
-  </select>
--->
-
-  <!--
-<option v-for="categorie of listeCat" :key="categorie.id">{{categorie.nom}}</option>
-  -->
-
-  <!--
-
-  <v-container fluid>
-    <v-row align="center">
-      <v-col
-          class="d-flex"
-          cols="12"
-          sm="6"
-      >
-        <v-select
-            :items="items"      ###liste des catégories
-            label="Catégories"
-        ></v-select>
-      </v-col>
-    </v-row>
-  </v-container>
-
-  -->
 
   <h1>Liste des objets</h1>
   <!-- Pour Afficher la liste sous forme de tableau -->
@@ -54,7 +22,7 @@
     <!-- On met les données dans les colonnes grâce a une boucle -->
     <tr v-for="objet in listeObj" :key="objet.id">
       <td>{{ objet.nom }}</td>
-      <td>{{ categorieObjet(objet.id) }}</td>
+      <td v-for ="cat in nomCats">{{ cat }} </td>
       <td>
         <button @click="ModifierObjet(objet.id)">Supprimer</button>
       </td>
@@ -80,7 +48,8 @@
 import { reactive, onMounted } from "vue";
 
 let listeObj = reactive([]);
-let nomCat = reactive([]);
+let listeID = reactive([]);
+let nomCats = reactive([]);
 
 const url = "http://localhost:8989/api/objets";
 function chargeObjets(url = "http://localhost:8989/api/objets") {
@@ -90,32 +59,39 @@ function chargeObjets(url = "http://localhost:8989/api/objets") {
         return response.json();
       })
       .then((dataJSON) => {
-        listeObj = dataJSON._embedded.objets;
+        listeObj.splice(0, listeObj.length);
+        dataJSON._embedded.objets.forEach((v) => listeObj.push(v));
         console.log(listeObj);
+        for(let indice = 0; indice < listeObj.length; indice++){
+          listeID.push(dataJSON._embedded.objets[indice].id);
+          console.log(listeID);
+          categorieObjet();
+        }
       })
       .catch((error) => console.log(error));
 }
 
-
-function categorieObjet(id){
+function categorieObjet(){
   console.log("categorieObjet");
   const fetchOptions = { method: "GET" };
-  console.log("http://localhost:8989/api/objets/" + id + "/categorie");
-  fetch("http://localhost:8989/api/objets/" + [] + "/categorie", fetchOptions)
-      .then((response) => {
-        return response.json();
-      })
-      .then((dataJSON) => {
-        nomCat = dataJSON.nom;
-        console.log(nomCat);
-      })
-      .catch((error) => console.log(error));
+  for(let ident of listeID){
+    console.log("http://localhost:8989/api/objets/" + ident + "/categorie");
+    fetch("http://localhost:8989/api/objets/" + ident + "/categorie", fetchOptions)
+        .then((response) => {
+          return response.json();
+        })
+        .then((dataJSON) => {
+          nomCats.push(dataJSON.nom);
+          console.log(nomCats);
+        })
+        .catch((error) => console.log(error));
+  }
 }
 
 
 onMounted(() => {
   chargeObjets();
-  categorieObjet();
+  categorieObjet()
 });
 
 

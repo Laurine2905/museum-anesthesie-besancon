@@ -31,50 +31,36 @@
 
 <script setup>
 import {onMounted, reactive} from "vue";
-const url = "http://localhost:8989/api";
 
-//let listeS = reactive([]);
+const url = "http://localhost:8989/api/salles";
 
+let listeS = reactive([]);
 
-import {BACKEND, doAjaxRequest} from "../api";
-// Pour réinitialiser le formuaire
-const salleVide = {
-  salleNom: ""
-};
-let data = reactive({
-  // Les données saisies dans le formulaire
-  formulaireSalle: { ...salleVide },
-  // La liste des catégories affichée sous forme de table
-  listeS: []
-});
-function chargeSalles() {
-  console.log("coucou chargerSalles");
-  // Appel à l'API pour avoir la liste des catégories
-  // Trié par code, descendant
-  // Verbe HTTP GET par défaut
-  doAjaxRequest(BACKEND + "/api/salles")
-      .then((json) => {
-        data.listeSalles = json._embedded.salles;
-      })
-      .catch((error) => alert(error.message));
-}
-
-
-function getSalles() {
-  const fetchOptions = { method: "GET", mode: "no-cors" };
-  console.log("coucou getSalles");
+function chargeSalles(url = "http://localhost:8989/api/salles") {
+  const fetchOptions = {method: "GET"};
   fetch(url, fetchOptions)
       .then((response) => {
         return response.json();
       })
       .then((dataJSON) => {
-        console.log(dataJSON);
-        // -- vider la liste des choses
         listeS.splice(0, listeS.length);
         // pour chaque donnée renvoyée par l'API
-        //  créer un objet instance de la classe Chose
-        //  et l'ajouter dans la liste listeC
-        dataJSON.forEach((v) => listeS.push(new Salle(v.id, v.salleNom)));
+        // l'ajouter dans la liste listeCat
+        dataJSON._embedded.salles.forEach((v) => listeS.push(v));
+      })
+      .catch((error) => console.log(error));
+}
+
+function SupprimerObjet(id) {
+  console.log(id);
+  const fetchOptions = {method: "DELETE"};
+  fetch("http://localhost:8989/api/salles/" + id, fetchOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((dataJSON) => {
+        console.log(dataJSON);
+        chargeSalles();
       })
       .catch((error) => console.log(error));
 }
@@ -92,6 +78,7 @@ th {
   border: 1px solid #ddd;
   padding: 8px;
 }
+
 th {
   padding-top: 12px;
   padding-bottom: 12px;

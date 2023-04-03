@@ -3,15 +3,15 @@
 
   <v-btn href="/addCategorie">Ajouter une nouvelle catégorie</v-btn>
 
-  <h1>Liste des objets</h1>
+  <h1>Liste des catégories</h1>
   <!-- Pour Afficher la liste sous forme de tableau -->
 
   <table>
     <!-- Les intitulé des colonnes -->
     <tr>
       <th>Nom de la catégorie</th>
-      <th>Modifier</th>
-      <th>Supprimer</th>
+      <th>Modifier la catégorie</th>
+      <th>Supprimer la catégorie</th>
     </tr>
     <!-- Si le tableau des catégories est vide -->
     <tr v-if="!listeCat">
@@ -19,7 +19,7 @@
     </tr>
     <!-- Si le tableau des catégories n'est pas vide -->
     <!-- On met les données dans les colonnes grâce a une boucle -->
-    <tr v-for="cat in listeCat" :key="cat.id">
+    <tr v-else v-for="cat in listeCat" :key="cat.id">
       <td>{{ cat.nom }}</td>
       <td>
         <button @click="ModifierCategorie(cat.id)">Modifier</button>
@@ -29,7 +29,6 @@
     </td>
     </tr>
   </table>
-
 </template>
 
 <script setup>
@@ -47,15 +46,17 @@ function chargeCategories(url = "http://localhost:8989/api/categories") {
         return response.json();
       })
       .then((dataJSON) => {
-        listeCat = dataJSON._embedded.categories;
-        console.log(listeCat);
+        listeCat.splice(0, listeCat.length);
+        // pour chaque donnée renvoyée par l'API
+        // l'ajouter dans la liste listeCat
+        dataJSON._embedded.categories.forEach((v) => listeCat.push(v));
       })
       .catch((error) => console.log(error));
 }
 
 // n'a pas pu être vérifié puisque l'affichage du tableau fait des siennes
 function SupprimerCategorie(id) {
-  doAjaxRequest(id, { method: "DELETE" })
+  doAjaxRequest("http://localhost:8989/api/categories/" + id, { method: "DELETE" })
       .then(chargeCategories)
       .catch((error) => alert(error.message));
 }
