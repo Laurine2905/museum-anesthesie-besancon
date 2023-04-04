@@ -23,7 +23,7 @@ import { RouterLink, RouterView } from "vue-router";
           <li><a href="#">Partenaires</a></li>
         </ul></li>
       <li><a href="histoire.html">Un peu d'histoire</a></li>
-      <li><a href="visite3D.html">Visite virtuelle d'un bloc opératoire</a></li>
+      <li><a href="visite_virtuelle.html">Visite virtuelle d'un bloc opératoire</a></li>
     </ul>
   </nav>
 </template>
