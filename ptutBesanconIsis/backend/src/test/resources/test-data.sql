@@ -18,5 +18,6 @@ INSERT INTO MultimediaCat(description, URL_photoCat, URL_audioCat, URL_videoCat,
 INSERT INTO MultimediaObj(description, URL_photoObj, URL_audioObj, URL_videoObj, objet_id ) VALUES
     ('je suis une description d un objet multimedia', NULL, NULL, NULL, (select id from objet where nom ='Heidbrink'));
 
-
+INSERT INTO Utilisateur(login,mdp,admin) VALUES
+    ('musee','besancon', true);
     

@@ -1,4 +1,4 @@
-package jfc.isis;
+package jfc.isis.dao;
 
 import jfc.isis.dao.CategorieRepository;
 import jfc.isis.entity.Categorie;

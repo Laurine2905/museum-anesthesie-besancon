@@ -1,4 +1,4 @@
-package jfc.isis;
+package jfc.isis.dao;
 
 import jfc.isis.dao.ObjetRepository;
 import jfc.isis.entity.Objet;

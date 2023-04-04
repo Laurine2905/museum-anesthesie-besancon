@@ -15,6 +15,7 @@ import java.util.List;
 @ToString
 public class Utilisateur {
     @Id
+    @NonNull
     private String login;
 
     @Column(unique = true)
