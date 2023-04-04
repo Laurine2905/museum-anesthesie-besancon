@@ -2,7 +2,7 @@
 //    https://pchen66.github.io/panolens.js/docs/
 
 // -- l'élement dans lequel s'affichera l'image pano
-let app = document.getElementById("app");
+let app = document.getElementById("appvisite");
 
 // -- les parametres de l'afficheur de l'image pano
 let viewer = new PANOLENS.Viewer({
@@ -16,7 +16,7 @@ let viewer = new PANOLENS.Viewer({
     dwellTime: 1000
 });
 // -- l'image panoramique
-let panorama = new PANOLENS.ImagePanorama("assets/Salle.jpg");
+let panorama = new PANOLENS.ImagePanorama("Images/salle.jpg");
 // -- les point d'interet
 let infospot1 = new PANOLENS.Infospot(350, PANOLENS.DataImage.WhiteTile); // l'éachelle et la représentation du point d'interet
 infospot1.position.set(0, 0, -5000); // sa position
