@@ -1,5 +1,5 @@
 <template>
-<h1>Les catégories</h1>
+  <h1>Les catégories</h1>
 
   <v-btn href="/addCategorie">Ajouter une nouvelle catégorie</v-btn>
 
@@ -25,22 +25,22 @@
         <button @click="ModifierCategorie(cat.id)">Modifier</button>
       </td>
       <td>
-      <button @click="SupprimerCategorie(cat.id)">Supprimer</button>
-    </td>
+        <button @click="SupprimerCategorie(cat.id)">Supprimer</button>
+      </td>
     </tr>
   </table>
 </template>
 
 <script setup>
-import CategorieModify from "../components/CategorieModify.vue";
-import { reactive, onMounted } from "vue";
+import {reactive, onMounted} from "vue";
 import {doAjaxRequest} from "@/api";
 
 let listeCat = reactive([]);
 
 const url = "http://localhost:8989/api/categories";
+
 function chargeCategories(url = "http://localhost:8989/api/categories") {
-  const fetchOptions = { method: "GET" };
+  const fetchOptions = {method: "GET"};
   fetch(url, fetchOptions)
       .then((response) => {
         return response.json();
@@ -56,7 +56,7 @@ function chargeCategories(url = "http://localhost:8989/api/categories") {
 
 // n'a pas pu être vérifié puisque l'affichage du tableau fait des siennes
 function SupprimerCategorie(id) {
-  doAjaxRequest("http://localhost:8989/api/categories/" + id, { method: "DELETE" })
+  doAjaxRequest("http://localhost:8989/api/categories/" + id, {method: "DELETE"})
       .then(chargeCategories)
       .catch((error) => alert(error.message));
 }
@@ -74,6 +74,7 @@ th {
   border: 1px solid #ddd;
   padding: 8px;
 }
+
 th {
   padding-top: 12px;
   padding-bottom: 12px;

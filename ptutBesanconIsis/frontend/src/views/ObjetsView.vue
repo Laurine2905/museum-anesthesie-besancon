@@ -37,14 +37,6 @@
 
 <script setup>
 
-// script pour v-select
-
-//export default {
-//  data: () => ({
-//    items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-//  }),
-//}
-
 import { reactive, onMounted } from "vue";
 
 let listeObj = reactive([]);

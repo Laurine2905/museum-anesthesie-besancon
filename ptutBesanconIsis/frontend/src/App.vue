@@ -28,6 +28,9 @@ import { RouterLink, RouterView } from 'vue-router'
         <v-btn variant="outlined" color="black">
           <RouterLink to="/salles">Salles</RouterLink>
         </v-btn>
+        <v-btn variant="outlined" color="black">
+          <RouterLink to="/histoires">Histoires</RouterLink>
+        </v-btn>
       </div>
     </v-app-bar>
 

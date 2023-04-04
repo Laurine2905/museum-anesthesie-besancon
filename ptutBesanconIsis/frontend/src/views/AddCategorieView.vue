@@ -1,16 +1,16 @@
 <script setup>
-import { ref } from "vue";
+import {ref} from "vue";
 // -- donnée réactive pour la saisie de la nouvelle catégorie
 const nom = ref("");
 const description = ref("");
-const urlPhoto = ref("");
-
+const imageData = ref("");
 
 //const emit = defineEmits(['addCat']);
 
 const url = "http://localhost:8989/api/categories";
+let id;
 
-function handlerAddCategorie(nom, description, urlPhoto) {
+function handlerAddCategorie(nom, description, imageData) { //sauf image
   console.log(nom);
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -20,10 +20,33 @@ function handlerAddCategorie(nom, description, urlPhoto) {
   const fetchOptions = {
     method: "POST",
     headers: myHeaders,
-    body: JSON.stringify({ nom: nom, description: description, urlPhoto: urlPhoto }),
+    body: JSON.stringify({nom: nom, description: description}),
   };
   fetch(url, fetchOptions)
       .then((response) => {
+        return response.json();
+      })
+      .then((dataJSON) => {
+        console.log(dataJSON);  //AJOUTER MESSAGE DE SUCCES
+        id = dataJSON.id;
+        console.log(id);
+        handlerAddCategorieImage(imageData);
+      })
+      .catch((error) => console.log(error));
+}
+
+function handlerAddCategorieImage(imageData) { //sauf image
+  let myHeaders = new Headers();
+  console.log(imageData);
+  myHeaders.append("Content-Type", "application/json");
+  const fetchOptions = {
+    method: "PUT",
+    headers: myHeaders,
+    body: JSON.stringify({imageDatas: imageData}),
+  };
+  fetch(url + "/" + id + "/imageData", fetchOptions)
+      .then((response) => {
+        console.log(url + "/" + id + "/imageData");
         return response.json();
       })
       .then((dataJSON) => {
@@ -42,7 +65,7 @@ function handlerAddCategorie(nom, description, urlPhoto) {
   <p>Une fois la catégorie ajoutée vous serez en mesure de la renseignée comme étant la catégorie d'un objet.</p>
 
   <v-sheet width="500" class="mx-auto">
-    <v-form @submit.prevent=handlerAddCategorie(nom,description,urlPhoto)>  <!-- normalement on met $ devant emit -->
+    <v-form @submit.prevent=handlerAddCategorie(nom,description,imageData)>  <!-- normalement on met $ devant emit -->
       <v-text-field
           v-model="nom"
           label="Nom de la catégorie"
@@ -60,17 +83,19 @@ function handlerAddCategorie(nom, description, urlPhoto) {
               model-value=""
           ></v-textarea>
     -->
-          <v-text-field
-              v-model="urlPhoto"
-              label="Lien de l'image"
-          ></v-text-field>
-          <v-btn type="submit" block class="mt-2">Valider</v-btn>
-        </v-form>
-      </v-sheet>
+      <v-file-input
+          label="Image illustrant la catégorie"
+          accept="image/*"
+          v-model="imageData"
+      ></v-file-input>
+      <v-btn type="submit" block class="mt-2">Valider</v-btn>
+    </v-form>
+  </v-sheet>
 
-      <!-- voir error-message pour textarea  et
-                :rules="rules"
-                @submit.prevent="emit('addCat', nom, description, urlPhoto)"
+
+  <!-- voir error-message pour textarea  et
+            :rules="rules"
+            @submit.prevent="emit('addCat', nom, description, urlPhoto)"
 -->
 
 
