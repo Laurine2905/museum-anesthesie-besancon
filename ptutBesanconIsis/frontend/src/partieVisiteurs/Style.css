@@ -462,27 +462,28 @@ body{
 /* visite virtuelle */
 
 #appvisite {
-    border: 2px solid red;
+    border: 2px solid rgb(255,121,0);
     height: 500px;
-    width: 100%;
-    margin: 50px;
+    margin: auto;
+    margin-top: 50px;
+    width: 90%;    /*s'étale sur toute la largeur de l'écran*/
 }
 
 #infospot1,#infospot2,#infospot3 {
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 400px;
+    max-height: 400px;
     min-width: 200px;
     min-height: 250px;
     background: #fff;
-    color: #000;
+    color: black;
     border-radius: 3px;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
 }
 
 #infospot1,#infospot2,#infospot3 > iframe {
-    border: none;
-    width:100%;
+    border: black;
+    width:90%;
 }
 .title {
     font-size: 1.5em;
