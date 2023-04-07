@@ -2,11 +2,12 @@
 
 <template>
   <main class="accueil_admin">
-    <button>Objets</button>
-    <button>Catégories</button>
-    <button>Salles</button>
-    <button>Histoires</button>
+    <v-btn href="/objets">Objets</v-btn>
+    <v-btn href="/categories">Catégories</v-btn>
+    <v-btn href="/salles">Salles</v-btn>
+    <v-btn href="/histoires">Histoires</v-btn>
   </main>
 </template>
 
-<style></style>
+<style>
+</style>

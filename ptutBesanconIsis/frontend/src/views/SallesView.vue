@@ -30,6 +30,44 @@
 </template>
 
 <script setup>
+import {onMounted, reactive} from "vue";
+
+const url = "http://localhost:8989/api/salles";
+
+let listeS = reactive([]);
+
+function chargeSalles(url = "http://localhost:8989/api/salles") {
+  const fetchOptions = {method: "GET"};
+  fetch(url, fetchOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((dataJSON) => {
+        listeS.splice(0, listeS.length);
+        // pour chaque donnée renvoyée par l'API
+        // l'ajouter dans la liste listeCat
+        dataJSON._embedded.salles.forEach((v) => listeS.push(v));
+      })
+      .catch((error) => console.log(error));
+}
+
+function SupprimerObjet(id) {
+  console.log(id);
+  const fetchOptions = {method: "DELETE"};
+  fetch("http://localhost:8989/api/salles/" + id, fetchOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((dataJSON) => {
+        console.log(dataJSON);
+        chargeSalles();
+      })
+      .catch((error) => console.log(error));
+}
+
+
+// A l'affichage du composant, on affiche la liste
+onMounted(chargeSalles);
 
 </script>
 
@@ -40,6 +78,7 @@ th {
   border: 1px solid #ddd;
   padding: 8px;
 }
+
 th {
   padding-top: 12px;
   padding-bottom: 12px;

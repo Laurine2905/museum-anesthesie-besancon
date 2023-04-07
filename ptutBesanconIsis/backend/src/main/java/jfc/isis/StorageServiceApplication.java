@@ -27,7 +27,7 @@ public class StorageServiceApplication {
     @Autowired
     private StorageService service;
 
-    // on utilise la fonction upload pour uppload la photo dans notre base de donnée
+    // on utilise la fonction upload pour upload la photo dans notre base de donnée
     @PostMapping
     public ResponseEntity<?> uploadImage(@RequestParam("image")MultipartFile file) throws IOException {
         String uploadImage = service.uploadImage(file);

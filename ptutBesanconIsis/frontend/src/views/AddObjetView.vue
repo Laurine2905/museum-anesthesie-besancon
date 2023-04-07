@@ -1,26 +1,54 @@
 <script setup>
-import { ref } from "vue";
-// -- donnée réactive pour la saisie du libellé
+import {reactive, ref} from "vue";
+// -- donnée réactive pour la saisie du nouvel objet
 const nom = ref("");
+const annee = ref("");
+const createur = ref("");
+const pays = ref("");
+const description = ref("");
+const nbpossession = ref("");
 
-const emit = defineEmits(["addC"]);
+let listeCatNom = reactive([]);
+let listeCat = reactive([]);
 
-</script>
-
-
-<script>
-export default {
-  data: () => ({
-    nom: '',
-    rules: [
-      value => {
-        if (value) return true
-
-        return "Vous devez renseigner le nom d'une nouvelle catégorie."
-      },
-    ],
-  }),
+function chargeCategories(url = "http://localhost:8989/api/categories") {
+  const fetchOptions = {method: "GET"};
+  fetch(url, fetchOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((dataJSON) => {
+        listeCat.splice(0, listeCat.length);
+        dataJSON._embedded.categories.forEach((v) => listeCat.push(v));
+        for(let indice = 0; indice < listeCat.length; indice++){
+          listeCatNom.push(dataJSON._embedded.categories[indice].nom);
+        }
+      })
+      .catch((error) => console.log(error));
 }
+
+let listeSalleNom = reactive([]);
+let listeSalle = reactive([]);
+
+function chargeSalles(url = "http://localhost:8989/api/salles") {
+  const fetchOptions = {method: "GET"};
+  fetch(url, fetchOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((dataJSON) => {
+        listeSalle.splice(0, listeSalle.length);
+        dataJSON._embedded.salles.forEach((v) => listeSalle.push(v));
+        for(let indice = 0; indice < listeSalle.length; indice++){
+          listeSalleNom.push(dataJSON._embedded.salles[indice].nom);
+        }
+      })
+      .catch((error) => console.log(error));
+}
+
+chargeCategories();
+chargeSalles();
+
 </script>
 
 <template>
@@ -55,30 +83,39 @@ export default {
           label="Pays de création de l'objet"
           type="text"
       ></v-text-field>
-      <v-textarea
-          name="input-7-1"
-          variant="filled"
-          label="Description"
-          auto-grow
-          model-value=""
-      ></v-textarea>
       <v-text-field
-          v-model="nb_possession"
+          v-model="description"
+          label="Description"
+          type="text"
+      ></v-text-field>
+      <v-text-field
+          v-model="nbpossession"
           :rules="rules"
           label="Combien de fois l'objet est-il présenté dans le musée ?"
           type="number"
       ></v-text-field>
-      <v-text-field
-          v-model="url_photo"
-          :rules="rules"
-          label="Lien de l'image"
-      ></v-text-field>
+      <!--
       <v-text-field
           v-model="categorie"
           :rules="rules"
           label="Catégorie de l'objet"
           type="Categorie"
       ></v-text-field>
+      -->
+      <v-select
+          label="Catégorie"
+          :items="listeCatNom"
+      ></v-select>
+      <v-select
+          model-value="salle"
+          label="Salle d'exposition"
+          :items="listeSalleNom"
+      ></v-select>
+      <v-file-input
+          label="Image illustrant la catégorie"
+          accept="image/*"
+          v-model="image"
+      ></v-file-input>
       <v-btn type="submit" block class="mt-2">Valider</v-btn>
     </v-container>
   </v-card>
@@ -86,5 +123,4 @@ export default {
 </template>
 
 <style scoped>
-
 </style>
