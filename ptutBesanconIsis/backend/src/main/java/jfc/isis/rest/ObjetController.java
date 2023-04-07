@@ -5,10 +5,7 @@ import jfc.isis.dao.ObjetRepository;
 import jfc.isis.service.CategorieService;
 import jfc.isis.service.ObjetService;
 import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/service/objet")
@@ -23,7 +20,7 @@ public class ObjetController {
         this.mapper = mapper;
     }
 
-    @PostMapping("objetsParCategorie")
+    @GetMapping("objetsParCategorie")
     public ObjetRepository objetsParCategorie(@RequestParam int idDeLaCategorie){
         var objets = objetService.getObjetsParCategorie(idDeLaCategorie);
         return mapper.map(objets,ObjetRepository.class);

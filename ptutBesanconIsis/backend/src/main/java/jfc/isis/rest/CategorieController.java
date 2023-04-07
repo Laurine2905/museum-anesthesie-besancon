@@ -5,10 +5,7 @@ import jfc.isis.dao.UtilisateurRepository;
 import jfc.isis.service.CategorieService;
 import jfc.isis.service.UtilisateurService;
 import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/service/categorie")
@@ -22,7 +19,7 @@ public class CategorieController {
         this.mapper = mapper;
     }
 
-    @PostMapping("listeCategories")
+    @GetMapping("listeCategories")
     public CategorieRepository listeCategories(){
         var categories = categorieService.listeDesCategoriesService();
         return mapper.map(categories,CategorieRepository.class);

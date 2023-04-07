@@ -37,19 +37,17 @@ import {doAjaxRequest} from "@/api";
 
 let listeCat = reactive([]);
 
-const url = "http://localhost:8989/api/categories";
+const url = "/service/categorie/listeCategories";
 
-function chargeCategories(url = "http://localhost:8989/api/categories") {
+function chargeCategories(url = "/service/categorie/listeCategories") {
   const fetchOptions = {method: "GET"};
   fetch(url, fetchOptions)
       .then((response) => {
         return response.json();
       })
       .then((dataJSON) => {
-        listeCat.splice(0, listeCat.length);
-        // pour chaque donnée renvoyée par l'API
-        // l'ajouter dans la liste listeCat
-        dataJSON._embedded.categories.forEach((v) => listeCat.push(v));
+        listeCat=dataJSON;
+        console.log(listeCat);
       })
       .catch((error) => console.log(error));
 }
