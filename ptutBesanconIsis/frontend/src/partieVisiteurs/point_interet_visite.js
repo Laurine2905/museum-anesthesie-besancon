@@ -1,3 +1,21 @@
+function getCategories() {
+    const fetchOptions = { method: "GET" };
+    fetch(url, fetchOptions)
+        .then((response) => {
+            return response.json();
+        })
+        .then((dataJSON) => {
+            console.log(dataJSON);
+            // -- vider la liste des choses
+            listeC.splice(0, listeC.length);
+            // pour chaque donnée renvoyée par l'API
+            //  créer un objet instance de la classe Chose
+            //  et l'ajouter dans la liste listeC
+            dataJSON.forEach((v) => listeC.push(new Categorie(v.id, v.nom)));     //vérifier les attributs de catégorie
+        })
+        .catch((error) => console.log(error));
+}
+
 // -- utilisation de Panonlens
 //    https://pchen66.github.io/panolens.js/docs/
 
