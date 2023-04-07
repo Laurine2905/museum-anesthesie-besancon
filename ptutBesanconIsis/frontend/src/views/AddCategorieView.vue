@@ -37,16 +37,19 @@ function handlerAddCategorie(nom, description, imageData) { //sauf image
 
 function handlerAddCategorieImage(imageData) { //sauf image
   let myHeaders = new Headers();
-  console.log(imageData);
-  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Content-Type", "multipart/form-data");
+  const formData = new FormData();
+  formData.append('image', imageData.name);
+  console.log(formData);
   const fetchOptions = {
-    method: "PUT",
+    method: "POST",
     headers: myHeaders,
-    body: JSON.stringify({imageDatas: imageData}),
+    body: formData,
   };
-  fetch(url + "/" + id + "/imageData", fetchOptions)
+  fetch("http://localhost:8989/imageData", fetchOptions)
       .then((response) => {
         console.log(url + "/" + id + "/imageData");
+        //"http://localhost:8989/imageData",
         return response.json();
       })
       .then((dataJSON) => {
