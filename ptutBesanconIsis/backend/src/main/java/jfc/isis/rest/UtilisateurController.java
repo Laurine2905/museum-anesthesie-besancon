@@ -4,9 +4,10 @@ import jfc.isis.dao.UtilisateurRepository;
 import jfc.isis.service.UtilisateurService;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping(path = "/services/utilisateur")
+@RequestMapping(path = "/service/utilisateur")
 public class UtilisateurController {
 
     private final UtilisateurService utilisateurService;
@@ -17,10 +18,18 @@ public class UtilisateurController {
         this.mapper = mapper;
     }
 
-    @PostMapping("log")
+    @PostMapping("login")
     public UtilisateurRepository log(@RequestParam String login, @RequestParam String mdp) throws Exception {
         var utilisateur = utilisateurService.log(login,mdp);
         return mapper.map(utilisateur,UtilisateurRepository.class);
+    }
+    //Exemple : http://localhost:8989/service/utilisateur/login?login=musee&mdp=besancon
+
+    @RequestMapping("/loginView")
+    public ModelAndView afficherloginView() {
+        ModelAndView mav = new ModelAndView("loginView");
+// Ajouter ici des données à passer à la vue, si nécessaire
+        return mav;
     }
 
 }

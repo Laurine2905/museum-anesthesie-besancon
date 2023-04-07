@@ -4,6 +4,7 @@ import jfc.isis.entity.ImageData;
 import jfc.isis.dao.StorageRepository;
 import jfc.isis.util.ImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
