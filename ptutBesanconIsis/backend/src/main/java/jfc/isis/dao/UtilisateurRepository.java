@@ -1,6 +1,5 @@
 package jfc.isis.dao;
 
-import jfc.isis.entity.Objet;
 import jfc.isis.entity.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
 

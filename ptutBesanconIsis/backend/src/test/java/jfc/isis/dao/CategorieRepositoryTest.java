@@ -23,13 +23,14 @@ public class CategorieRepositoryTest {
 
     @Test
     void testTailleListeDesCategories() {
-        assertEquals(categorieDAO.listeDesCategories().size(),3, "La liste contient 3 catégories");
+        assertEquals(categorieDAO.findAll().size(), 3, "La liste contient 3 catégories");
     }
 
     @Test
     void testContenuListeDesCategories() {
         Categorie categorie1 = categorieDAO.findByNom("Appareils d anesthésie");
-        assertTrue(categorieDAO.listeDesCategories().contains(categorie1), "La liste contient la catégorie 1 (Appareils d anesthésie)");
+        assertTrue(categorieDAO.findAll().contains(categorie1),
+                "La liste contient la catégorie 1 (Appareils d anesthésie)");
     }
 
 }
