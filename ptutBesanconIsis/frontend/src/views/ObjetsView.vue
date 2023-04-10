@@ -6,6 +6,13 @@
   <h1>Liste des objets</h1>
   <!-- Pour Afficher la liste sous forme de tableau -->
 
+
+  <v-select
+      label="Catégorie"
+      :items="listeCatNom"
+  ></v-select>
+
+
   <table>
     <!-- Les intitulé des colonnes -->
     <tr>
@@ -81,9 +88,31 @@ function categorieObjet(){
 }
 
 
+let listeCatNom = reactive([]);
+let listeCat = reactive([]);
+
+function chargeCategories(url = "http://localhost:8989/api/categories") {
+  const fetchOptions = {method: "GET"};
+  fetch(url, fetchOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((dataJSON) => {
+        listeCat.splice(0, listeCat.length);
+        dataJSON._embedded.categories.forEach((v) => listeCat.push(v));
+        for(let indice = 0; indice < listeCat.length; indice++){
+          listeCatNom.push(dataJSON._embedded.categories[indice].nom);
+        }
+      })
+      .catch((error) => console.log(error));
+}
+
+
+
 onMounted(() => {
   chargeObjets();
-  categorieObjet()
+  categorieObjet();
+  chargeCategories()
 });
 
 

@@ -19,6 +19,11 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
+            path: "/login",
+            name: "login",
+            component: LoginView,
+        },
+        {
             path: "/",
             name: "accueil_admin",
             component: ModifsView,
@@ -52,11 +57,6 @@ const router = createRouter({
             path: "/addSalle",
             name: "addSalle",
             component: AddSalleView,
-        },
-        {
-            path: "/login",
-            name: "login",
-            component: LoginView,
         }
     ],
 });

@@ -14,7 +14,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <!-- le titre de la barre de navigation -->
       <v-app-bar-title>Espace administrateur</v-app-bar-title>
 
-      <!-- les boutons de la barre de navigation-->
+      <!-- les boutons de la barre de navigation
       <div class="bandeau_text" block>
         <v-btn variant="outlined" color="black">
           <RouterLink to="/">Accueil</RouterLink>
@@ -31,7 +31,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <v-btn variant="outlined" color="black">
           <RouterLink to="/histoires">Histoires</RouterLink>
         </v-btn>
-      </div>
+      </div> -->
     </v-app-bar>
 
     <!--  la zone d'affichage du contenu de l'application -->
