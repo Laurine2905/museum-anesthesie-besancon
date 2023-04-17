@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Musée d'anesthésie-réanimation et des techniques médico-chirurgicales</title>
+    <meta name="description"
+          content="Visite virtuelle du bloc opératoire du Muséum d’Anesthésie et des Techniques Médico-Chirurgicales de Besançon"/>
+    <link rel="stylesheet" media="screen" href="Style.css" type="text/css"/>
+    <script src="js/three.min.js"></script>
+    <script src="js/panolens.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div id="en-tete">
+            <img id="img_en-tete" src="Images/Logo musée anesthésie.png" alt="Cour du musée">
+            <h1 id="titre">Muséum d’Anesthésie et des Techniques Médico-Chirurgicales</h1>
+        </div>
+        <nav>
+            <ul id="bandeau">
+                <li><a href="accueil.html">Accueil</a></li>
+                <li><a href="nos_collections.html">Nos collections</a></li>
+                <li><a href="infos_pratiques.html">Informations pratiques</a>
+                    <ul class="sous">
+                        <li><a href="infos_pratiques.html#horaires">Horaires</a></li>
+                        <li><a href="infos_pratiques.html#tarifs">Tarifs</a></li>
+                        <li><a href="infos_pratiques.html#contact">Contact</a></li>
+                        <li><a href="infos_pratiques.html#map">Accès</a></li>
+                    </ul>
+                </li>
+                <li><a href="qui_sommes_nous.html">Qui sommes nous ?</a>
+                    <ul class="sous">
+                        <li><a href="#">Le musée</a></li>
+                        <li><a href="#">Nos bénévoles</a></li>
+                        <li><a href="#">Partenaires</a></li>
+                    </ul>
+                </li>
+                <li><a href="un_peu_dhistoire.html">Un peu d'histoire</a></li>
+                <li><a href="visite_virtuelle.html">Visite virtuelle d'un bloc opératoire</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="appvisite">
+        <div id="infospot1" style="display: none;">
+            <iframe
+                    src="https://www.youtube.com/embed/3QzJHeMGH40?autoplay=0&amp;start=0&amp;rel=0"
+            ></iframe>
+            <div class="title">Un cadre de vie accueillant</div>
+            <div class="text">
+                L’école est située à Castres.
+            </div>
+        </div>
+        <div id="infospot2" style="display:none">
+            <div class="title">Des infrastructures de premier plan</div>
+            <div class="text">
+                blibloublou
+            </div>
+        </div>
+        <div id="infospot3" style="display:none">
+            <div class="title">info spot 3</div>
+            <div class="text">
+                blablabla
+            </div>
+        </div>
+    </div>
+    <script src="point_interet_visite.js"></script>
+</body>
+</html>
