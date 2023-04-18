@@ -96,10 +96,10 @@
 						</goals>
 						<configuration>
 							<outputDirectory>src/main/resources/public</outputDirectory>
-							<overwrite>true</overwrite>
+							<overwrite>false</overwrite>
 							<resources>
 								<resource>
-									<directory>${project.parent.basedir}/frontend/target/dist</directory>
+									<directory>${project.parent.basedir}/frontend/</directory>
 									<includes>
 										<include>static/</include>
 										<include>index.html</include>
