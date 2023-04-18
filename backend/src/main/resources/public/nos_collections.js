@@ -1,91 +1,82 @@
-console.log("hello collections JS");
+//Fonctions pour l'affichage des collections
+
+//console.log("hello collections JS");
 
 const url = "http://localhost:8989/api";
-//const urlHP = "https://hp-api.onrender.com/api/characters/students";
-
-//document.getElementById("click_collection").addEventListener('click', () => {
-//    console.log('btn clicked');
-//});
-
 getCategories();
 
+//Pour charger toutes les catégories existantes
 function getCategories() {
     let fetchOptions = {method: "GET"};
-    console.log("hello getCategories");
     fetch(url + "/categories", fetchOptions)
         .then((response) => {
-            console.log("coucou1");
             return response.json();
         })
         .then((dataJSON) => {
-            console.log("coucou2");
             let categories = dataJSON._embedded.categories.sort((p1, p2) =>
-                p1.nom < p2.nom ? -1 : 1
+                p1.nom < p2.nom ? -1 : 1  //On trie les catégories par ordre alphabétique
             );
             let texteHTML = "";
-            for (let cat of categories) {
-                texteHTML = texteHTML + '<li>' + '<img src= "'+ cat.urlPhoto +'"/>' +'<br>' + cat.nom + "</li>";
+            for (let cat of categories) { //Pour chaque catégorie on indique la façon dont elles doivent apparaitre
+                texteHTML = texteHTML + '<li>' + '<img id="' + cat.id + '" src= "' + cat.urlPhoto + '"/>' + '<br>' + cat.nom + "</li>"; //<ul id=" + 'liste_objets' + "></ul>
             }
             document.getElementById("liste_categories").innerHTML = texteHTML;
         });
 }
 
+//En cliquant sur une catégorie on charge les objets qui en font partie
+document.getElementById("liste_categories").addEventListener("click", getObjetsCat, once = true);
 
-
-
-/*
-document.getElementById("liste_categories").addEventListener("click", getObjetsCat);
-
-/!**
- * ajoute dans le DOM les infos sur un pokemon
- * @param event permet de connaître l'url du pokemon
- *!/
 function getObjetsCat(event) {
-    const url = event.target.value;
-    const fetchOptions = { method: "GET" };
-
+    console.log("getObjetsCat");
+    const idCategorieClic = event.target.id; //on récupère l'id de la catégorie sur laquelle l'utilisateur a cliqué
+    const url = "http://localhost:8989/api/categories/" + idCategorieClic + "/objet";
+    const fetchOptions = {method: "GET"};
     fetch(url, fetchOptions)
         .then((response) => {
             return response.json();
         })
         .then((dataJSON) => {
-            console.log(dataJSON);
-            let objets = dataJSON.results;
-            let texthtml = "";
-            for (let obj of objets) {
-                texthtml += "<li>" + obj.nom + "</li>";
+            let textHTML = "";
+            let previousHTML = "";
+            let listeObj = [];
+            listeObj.splice(0, listeObj.length);
+            dataJSON._embedded.objets.forEach((v) => listeObj.push(v));
+            console.log(listeObj);
+            for (let indice = 0; indice < listeObj.length; indice++) { //Pour chaque objet on affiche sa photo et son nom
+                textHTML += "<li>" + '<img id="' + dataJSON._embedded.objets[indice].id + '" src= "' + dataJSON._embedded.objets[indice].urlPhoto + '"/>' + '<br>' + dataJSON._embedded.objets[indice].nom + "</li>";
             }
-            document.getElementById("liste_objets").innerHTML = texthtml;
+            document.getElementById("liste_categories").innerHTML = previousHTML; //On enlève l'affichage des catégories
+            document.getElementById("liste_objets").innerHTML = textHTML; //On affiche les objets
         });
 }
 
+//En cliquant sur un objet on affiche sa fiche de présentation
+document.getElementById("liste_objets").addEventListener("click", afficherObjet);
 
-
-
-
-
-document.getElementById("catID").addEventListener("click", getObjetsPourCategorie);
-
-function getObjetsPourCategorie() {
-    const fetchOptions = {};
-
-    fetch(url + "categories/catID", fetchOptions)//event.target.value ?
+function afficherObjet(event) {
+    const idObjetClic = event.target.id;
+    const url = "http://localhost:8989/api/objets/" + idObjetClic;
+    const fetchOptions = {method: "GET"};
+    fetch(url, fetchOptions)
         .then((response) => {
-            console.log("coucou bis");
             return response.json();
         })
         .then((dataJSON) => {
-            console.log(dataJSON);
-            let objets = dataJSON.results;
-            let texthtml = "";
-            for (let obj of objets) {
-                texthtml += "<li>" + obj.nom + "</li>";
-            }
-            document.getElementById("liste_objets").innerHTML = texthtml;
-        })
-        .catch((error) => {
-            console.log(error)
+            let textHTML = "";
+            let previousHTML = "";
+            textHTML += "<div>"
+            textHTML += '<h1>' + dataJSON.nom + '</h1>'
+            textHTML += '<img src= "' + dataJSON.urlPhoto + '"/>' + '<br>'
+            textHTML += '<h2> En bref </h2>'
+            textHTML += '<li> Créateur : ' + dataJSON.createur + '</li>'
+            textHTML += '<li> Date de l' + "'" + 'invention : ' + dataJSON.annee + '</li>'
+            textHTML += '<li> Pays d' + "'" + 'origine : ' + dataJSON.pays + '</li>'
+            textHTML += '<h2> Description </h2>'
+            textHTML += '<p class="description">' + dataJSON.description + '</p>'
+            textHTML += '<iframe class="video" src="' + dataJSON.urlVideo + '" allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>';
+            textHTML += "</div>";
+            document.getElementById("liste_objets").innerHTML = previousHTML; //On enlève la liste des objets
+            document.getElementById("objet").innerHTML = textHTML; //On affiche la présentation de l'objet sur lequel l'utilisateur a cliqué
         });
 }
-
- */

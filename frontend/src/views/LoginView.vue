@@ -1,43 +1,68 @@
+<!-- Page de connexion à l'espace administrateur -->
+
 <template>
-  <form @submit.prevent="login">
-    <!-- Id input -->
-    <div class="form-outline mb-4">
-      <!-- <p class="title">Veuillez vous connecter</p> -->
-      <label class="form-label" for="form2Example1">Identifiant : </label>
-      <input type="text" id="form2Example1" class="form-control" placeholder="Entrez votre identifiant ici" v-model="id" />
-    </div>
+  <v-sheet rounded>
+    <v-card class="mx-auto px-6 py-8" max-width="344">
 
-    <!-- Password input -->
-    <div class="form-outline mb-4">
-      <label class="form-label" for="form2Example2">Mot de passe : </label>
-      <input type="password" id="form2Example2" class="form-control" placeholder="Entrez votre mot de passe ici"
-             v-model="password" />
-    </div>
-    <p class="errorMsg" v-if="errMsg">{{ errMsg }}</p><br>
+      <v-form @submit.prevent="login">
+        <!-- Id input -->
+        <h2 class="title">Veuillez vous connecter</h2>
+        <br>
+        <v-text-field
+            type="text"
+            placeholder="Entrez votre identifiant ici"
+            label="Identifiant"
+            v-model="id"
+        ></v-text-field>
 
-    <!-- Submit button -->
-    <button type="submit" id="button-auth" class="btn btn-primary btn-block mb-4">CONNEXION</button>
-  </form>
+        <!-- Password input -->
+        <v-text-field
+            type="password"
+            placeholder="Entrez votre mot de passe ici"
+            label="Mot de passe"
+            v-model="password"
+
+        ></v-text-field>
+
+        <p class="errorMsg" v-if="errMsg">{{ errMsg }}</p><br>
+
+        <!-- Submit button -->
+        <v-btn
+            type="submit"
+            id="button-auth"
+            class="btn btn-primary btn-block mb-4"
+            variant="elevated"
+            color="success"
+        >CONNEXION
+        </v-btn>
+      </v-form>
+    </v-card>
+  </v-sheet>
+
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import {ref} from 'vue';
 //import { log } from "/service/utilisateur/login";
 
-import { useRouter } from 'vue-router';// import router
+import {useRouter} from 'vue-router';
 let id = ref("");
 let password = ref("");
 let errMsg = ref();
 const router = useRouter();
 
 function login() {
-  if(id.value=="musee" && password.value=="besancon"){
-    router.push('/');
-  }else if(id.value!="musee"){
+  if (id.value == "musee" && password.value == "besancon") {
+    router.push('/accueil_admin');
+  } else if (id.value != "musee") {
     errMsg.value = 'Identifiant incorrect !'
-  }else{
-  errMsg.value = 'Mot de passe incorrect !'
-}
+  } else {
+    errMsg.value = 'Mot de passe incorrect !'
+  }
 }
 
 </script>
+
+<style scoped>
+
+</style>

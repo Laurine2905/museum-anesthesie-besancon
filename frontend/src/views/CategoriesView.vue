@@ -1,7 +1,10 @@
+<!-- Affichage des catégories sous forme d'un tableau --->
+
 <template>
   <h1>Les catégories</h1>
 
   <v-btn href="/addCategorie">Ajouter une nouvelle catégorie</v-btn>
+  <!-- le bouton renvoie vers la vue "AddCategorieView" pour pouvoir ajouter une nouvelle catégorie -->
 
   <h1>Liste des catégories</h1>
   <!-- Pour Afficher la liste sous forme de tableau -->
@@ -20,9 +23,10 @@
     <!-- Si le tableau des catégories n'est pas vide -->
     <!-- On met les données dans les colonnes grâce a une boucle -->
     <tr v-else v-for="cat in listeCat" :key="cat.id">
+      <!-- On affiche pour cahque objet le nom, un boutton de suppression et de modification -->
       <td>{{ cat.nom }}</td>
       <td>
-        <button @click="ModifierCategorie(cat.id)">Modifier</button>
+        <button @click="ModifierCategorie(cat.id)">Modifier</button> <!-- non fonctionnel -->
       </td>
       <td>
         <button @click="SupprimerCategorie(cat.id)">Supprimer</button>
@@ -39,6 +43,7 @@ let listeCat = reactive([]);
 
 const url = "http://localhost:8989/api/categories";
 
+//Pour afficher toutes les catégories existantes
 function chargeCategories(url = "http://localhost:8989/api/categories") {
   const fetchOptions = {method: "GET"};
   fetch(url, fetchOptions)
@@ -46,15 +51,12 @@ function chargeCategories(url = "http://localhost:8989/api/categories") {
         return response.json();
       })
       .then((dataJSON) => {
-        listeCat.splice(0, listeCat.length);
-        // pour chaque donnée renvoyée par l'API
-        // l'ajouter dans la liste listeCat
-        dataJSON._embedded.categories.forEach((v) => listeCat.push(v));
+        listeCat.splice(0, listeCat.length); //on vide la liste des catégories
+        dataJSON._embedded.categories.forEach((v) => listeCat.push(v)); //Puis on ajoute chaque catégorie à la liste
       })
       .catch((error) => console.log(error));
 }
-
-// n'a pas pu être vérifié puisque l'affichage du tableau fait des siennes
+//Pour supprimer une catégorie
 function SupprimerCategorie(id) {
   doAjaxRequest("http://localhost:8989/api/categories/" + id, {method: "DELETE"})
       .then(chargeCategories)

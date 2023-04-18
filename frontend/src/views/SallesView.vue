@@ -1,3 +1,5 @@
+<!-- Affichage des salles sous forme d'un tableau --->
+
 <template>
 
   <h1>Les salles</h1>
@@ -19,10 +21,10 @@
     </tr>
     <!-- Si le tableau des objets n'est pas vide -->
     <!-- On met les données dans les colonnes grâce a une boucle -->
-    <tr v-for="salle of listeS" :key="salle.id">
-      <td>{{ salle.nom }}</td>
+    <tr v-for="salle of listeS" :key="salle.id"> <!-- On récupère les salles individuellement à partir de leur id -->
+      <td>{{ salle.nom }}</td>  <!-- Pour chaque sallle on indique le nom -->
       <td>
-        <button @click="SupprimerObjet(salle.id)">Supprimer</button>
+        <button @click="SupprimerSalle(salle.id)">Supprimer</button>  <!-- Il est possible de supprimer une salle à partir du tableau -->
       </td>
     </tr>
   </table>
@@ -33,9 +35,9 @@
 import {onMounted, reactive} from "vue";
 
 const url = "http://localhost:8989/api/salles";
+let listeS = reactive([]); //la liste qui contient toutes les salles
 
-let listeS = reactive([]);
-
+//Pour charger toutes les salles dans la liste
 function chargeSalles(url = "http://localhost:8989/api/salles") {
   const fetchOptions = {method: "GET"};
   fetch(url, fetchOptions)
@@ -43,16 +45,16 @@ function chargeSalles(url = "http://localhost:8989/api/salles") {
         return response.json();
       })
       .then((dataJSON) => {
-        listeS.splice(0, listeS.length);
-        // pour chaque donnée renvoyée par l'API
-        // l'ajouter dans la liste listeCat
+        listeS.splice(0, listeS.length); //On commence par vider la liste des salles
+        // pour chaque salle renvoyée par l'API
+        // l'ajouter dans la liste listeS
         dataJSON._embedded.salles.forEach((v) => listeS.push(v));
       })
       .catch((error) => console.log(error));
 }
 
-function SupprimerObjet(id) {
-  console.log(id);
+//Pour supprimer une salle à partir de son id
+function SupprimerSalle(id) {
   const fetchOptions = {method: "DELETE"};
   fetch("http://localhost:8989/api/salles/" + id, fetchOptions)
       .then((response) => {
@@ -66,7 +68,7 @@ function SupprimerObjet(id) {
 }
 
 
-// A l'affichage du composant, on affiche la liste
+// A l'affichage du composant, on affiche la liste dans le tableau de template
 onMounted(chargeSalles);
 
 </script>

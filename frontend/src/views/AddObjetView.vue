@@ -1,56 +1,4 @@
-<script setup>
-import {reactive, ref} from "vue";
-// -- donnée réactive pour la saisie du nouvel objet
-const nom = ref("");
-const annee = ref("");
-const createur = ref("");
-const pays = ref("");
-const description = ref("");
-const nbpossession = ref("");
-
-let listeCatNom = reactive([]);
-let listeCat = reactive([]);
-
-function chargeCategories(url = "http://localhost:8989/api/categories") {
-  const fetchOptions = {method: "GET"};
-  fetch(url, fetchOptions)
-      .then((response) => {
-        return response.json();
-      })
-      .then((dataJSON) => {
-        listeCat.splice(0, listeCat.length);
-        dataJSON._embedded.categories.forEach((v) => listeCat.push(v));
-        for(let indice = 0; indice < listeCat.length; indice++){
-          listeCatNom.push(dataJSON._embedded.categories[indice].nom);
-        }
-      })
-      .catch((error) => console.log(error));
-}
-
-let listeSalleNom = reactive([]);
-let listeSalle = reactive([]);
-
-function chargeSalles(url = "http://localhost:8989/api/salles") {
-  const fetchOptions = {method: "GET"};
-  fetch(url, fetchOptions)
-      .then((response) => {
-        return response.json();
-      })
-      .then((dataJSON) => {
-        listeSalle.splice(0, listeSalle.length);
-        dataJSON._embedded.salles.forEach((v) => listeSalle.push(v));
-        for(let indice = 0; indice < listeSalle.length; indice++){
-          listeSalleNom.push(dataJSON._embedded.salles[indice].nom);
-        }
-      })
-      .catch((error) => console.log(error));
-}
-
-chargeCategories();
-chargeSalles();
-
-</script>
-
+<!-- Page d'ajout d'un nouvel objet -->
 <template>
 
   <h1>Ajouter un nouvel objet</h1>
@@ -59,6 +7,10 @@ chargeSalles();
 
   <v-card width="500" class="mx-auto" title="Nouvel objet">
     <v-container @submit.prevent="$emit('addC', nom)">
+      <!-- On ajoute l'objet au moment du click sur le bouton valider en bas du formulaire -->
+      <!-- Un objet est décrit par son nom, l'année de sa création, son créateur, le pays de création, une description,
+      le nombre d'exemplaires que possède le musée, la salle où il est exposé, la catégorie à laquelle il appartient,
+      une photo de présentation -->
       <v-text-field
           v-model="nom"
           :rules="rules"
@@ -121,6 +73,92 @@ chargeSalles();
   </v-card>
 
 </template>
+
+<script setup>
+import {reactive, ref} from "vue";
+// -- donnée réactive pour la saisie du nouvel objet
+const nom = ref("");
+const annee = ref("");
+const createur = ref("");
+const pays = ref("");
+const description = ref("");
+const nbpossession = ref("");
+
+let listeCatNom = reactive([]);
+let listeCat = reactive([]);
+
+//Pour récupérer toutes les catégories existantes, à afficher dans le select catégorie
+function chargeCategories(url = "http://localhost:8989/api/categories") {
+  const fetchOptions = {method: "GET"};
+  fetch(url, fetchOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((dataJSON) => {
+        listeCat.splice(0, listeCat.length);
+        dataJSON._embedded.categories.forEach((v) => listeCat.push(v));
+        for (let indice = 0; indice < listeCat.length; indice++) {
+          listeCatNom.push(dataJSON._embedded.categories[indice].nom);
+        }
+      })
+      .catch((error) => console.log(error));
+}
+
+let listeSalleNom = reactive([]);
+let listeSalle = reactive([]);
+
+//Pour r&écuper toutes les salles existantes à indiquer dans le select salle
+function chargeSalles(url = "http://localhost:8989/api/salles") {
+  const fetchOptions = {method: "GET"};
+  fetch(url, fetchOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((dataJSON) => {
+        listeSalle.splice(0, listeSalle.length);
+        dataJSON._embedded.salles.forEach((v) => listeSalle.push(v));
+        for (let indice = 0; indice < listeSalle.length; indice++) {
+          listeSalleNom.push(dataJSON._embedded.salles[indice].nom);
+        }
+      })
+      .catch((error) => console.log(error));
+}
+
+function handlerAddObjet(nom, annee, createur, pays, description, nbpossession, categorie, salle, urlPhoto) {
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  const fetchOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: JSON.stringify({
+      nom: nom,
+      annee: annee,
+      createur: createur,
+      pays: pays,
+      description: description,
+      nbpossession: nbpossession,
+      categorie: categorie,
+      salle: salle,
+      urlPhoto: urlPhoto
+    }),
+  };
+  fetch(url, fetchOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((dataJSON) => {
+        console.log(dataJSON);  //AJOUTER MESSAGE DE SUCCES
+        //id = dataJSON.id;
+        //console.log(id);
+        //handlerAddCategorieImage(imageData);
+      })
+      .catch((error) => console.log(error));
+}
+
+chargeCategories();
+chargeSalles();
+
+</script>
 
 <style scoped>
 </style>
