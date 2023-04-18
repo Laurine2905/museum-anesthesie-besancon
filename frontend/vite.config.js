@@ -19,7 +19,7 @@ export default defineConfig({
   server: {
     proxy: { // On redirige toutes les requêtes au backend vers le serveur de développement java
       '/api': { // L'API REST autogénérée, correspond à la config du backend spring.data.rest.base-path dans application.properties
-        target: 'http://localhost:8989', // correspond à la config du backend server.port dans application.properties
+        target: 'https://museum-anesthesie-besancon.herokuapp.com', // correspond à la config du backend server.port dans application.properties
         changeOrigin: true,
       },
       '/rest': { // L'adresse des contrôleurs ad-hoc pour les services métier

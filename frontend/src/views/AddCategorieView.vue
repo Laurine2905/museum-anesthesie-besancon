@@ -7,7 +7,7 @@ const imageData = ref("");
 
 //const emit = defineEmits(['addCat']);
 
-const url = "http://localhost:8989/api/categories";
+const url = "/api/categories";
 let id;
 
 function handlerAddCategorie(nom, description, imageData) { //sauf image
