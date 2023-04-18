@@ -1,5 +1,5 @@
 
-const url = "http://localhost:8989/api/objets/1"
+const url = "/api/objets/1"
 function getObjet() {
     const fetchOptions = {method: "GET"};
     fetch(url, fetchOptions)

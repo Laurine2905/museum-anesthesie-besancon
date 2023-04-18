@@ -2,7 +2,7 @@
 
 //console.log("hello collections JS");
 
-const url = "http://localhost:8989/api";
+const url = "/api";
 getCategories();
 
 //Pour charger toutes les catégories existantes
@@ -30,7 +30,7 @@ document.getElementById("liste_categories").addEventListener("click", getObjetsC
 function getObjetsCat(event) {
     console.log("getObjetsCat");
     const idCategorieClic = event.target.id; //on récupère l'id de la catégorie sur laquelle l'utilisateur a cliqué
-    const url = "http://localhost:8989/api/categories/" + idCategorieClic + "/objet";
+    const url = "/categories/" + idCategorieClic + "/objet";
     const fetchOptions = {method: "GET"};
     fetch(url, fetchOptions)
         .then((response) => {
@@ -56,7 +56,7 @@ document.getElementById("liste_objets").addEventListener("click", afficherObjet)
 
 function afficherObjet(event) {
     const idObjetClic = event.target.id;
-    const url = "http://localhost:8989/api/objets/" + idObjetClic;
+    const url = "/objets/" + idObjetClic;
     const fetchOptions = {method: "GET"};
     fetch(url, fetchOptions)
         .then((response) => {
