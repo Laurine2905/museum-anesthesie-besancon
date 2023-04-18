@@ -99,10 +99,10 @@
 							<overwrite>true</overwrite>
 							<resources>
 								<resource>
-									<directory>${project.parent.basedir}/frontend/public/</directory>
+									<directory>${project.parent.basedir}/frontend/target/dist</directory>
 									<includes>
-										<include>partieVisiteurs/</include>
-										<include>accueil.html</include>
+										<include>static/</include>
+										<include>index.html</include>
 										<include>favicon.ico</include>
 										<include>vite.svg</include>
 									</includes>
