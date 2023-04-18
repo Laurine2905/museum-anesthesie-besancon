@@ -18,7 +18,7 @@ function getCategories() {
             );
             let texteHTML = "";
             for (let cat of categories) { //Pour chaque catégorie on indique la façon dont elles doivent apparaitre
-                texteHTML = texteHTML + '<li>' + '<img id="' + cat.id + '" src= "' + cat.urlPhoto + '"/>' + '<br>' + cat.nom + "</li>"; //<ul id=" + 'liste_objets' + "></ul>
+                texteHTML = texteHTML + '<li>' + '<embed id="' + cat.id + '" src= "' + cat.urlPhoto + '"/>' + '<br>' + cat.nom + "</li>"; //<ul id=" + 'liste_objets' + "></ul>
             }
             document.getElementById("liste_categories").innerHTML = texteHTML;
         });
@@ -44,7 +44,7 @@ function getObjetsCat(event) {
             dataJSON._embedded.objets.forEach((v) => listeObj.push(v));
             console.log(listeObj);
             for (let indice = 0; indice < listeObj.length; indice++) { //Pour chaque objet on affiche sa photo et son nom
-                textHTML += "<li>" + '<img id="' + dataJSON._embedded.objets[indice].id + '" src= "' + dataJSON._embedded.objets[indice].urlPhoto + '"/>' + '<br>' + dataJSON._embedded.objets[indice].nom + "</li>";
+                textHTML += "<li>" + '<embed id="' + dataJSON._embedded.objets[indice].id + '" src= "' + dataJSON._embedded.objets[indice].urlPhoto + '"/>' + '<br>' + dataJSON._embedded.objets[indice].nom + "</li>";
             }
             document.getElementById("liste_categories").innerHTML = previousHTML; //On enlève l'affichage des catégories
             document.getElementById("liste_objets").innerHTML = textHTML; //On affiche les objets
@@ -67,7 +67,7 @@ function afficherObjet(event) {
             let previousHTML = "";
             textHTML += "<div>"
             textHTML += '<h1>' + dataJSON.nom + '</h1>'
-            textHTML += '<img src= "' + dataJSON.urlPhoto + '"/>' + '<br>'
+            textHTML += '<embed src= "' + dataJSON.urlPhoto + '"/>' + '<br>'
             textHTML += '<h2> En bref </h2>'
             textHTML += '<li> Créateur : ' + dataJSON.createur + '</li>'
             textHTML += '<li> Date de l' + "'" + 'invention : ' + dataJSON.annee + '</li>'
