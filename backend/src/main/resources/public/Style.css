@@ -483,6 +483,7 @@ iframe{
 #liste_categories li{
     margin: auto;
     text-align: center;
+    display: inline-block;
 }
 
 #liste_objets{
@@ -494,6 +495,7 @@ iframe{
 #liste_objets li{
     margin: auto;
     text-align: center;
+    display: inline-block;
 }
 
 #objet{
