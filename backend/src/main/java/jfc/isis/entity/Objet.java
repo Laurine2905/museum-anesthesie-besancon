@@ -33,6 +33,9 @@ public class Objet implements Comparable<Objet>{
     @Column(unique = true)
     private Integer nbPossession;
 
+    @Column(unique=true)
+    private String urlPhoto;
+
     @ManyToOne(optional = false)
     @NonNull
     private Categorie categorie;
