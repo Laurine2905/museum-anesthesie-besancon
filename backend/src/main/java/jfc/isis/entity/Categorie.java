@@ -19,10 +19,11 @@ public class Categorie implements Comparable<Categorie>{
     @Column(unique = true)
     @NonNull
     private String nom;
-    @Column(unique = true)
+    @Column(unique = false)
     private String description;
 
-
+    @Column(unique =false)
+    private String urlPhoto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
     private List<Objet> objet = new ArrayList<>();
 

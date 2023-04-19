@@ -22,18 +22,18 @@ public class Objet implements Comparable<Objet>{
     @Column(unique = true)
     @NonNull
     private String nom;
-    @Column(unique = true)
+    @Column(unique = false)
     private Integer annee;
-    @Column(unique = true)
+    @Column(unique = false)
     private String createur;
-    @Column(unique = true)
+    @Column(unique =false)
     private String pays;
-    @Column(unique = true)
+    @Column(unique =false)
     private String description;
-    @Column(unique = true)
+    @Column(unique =false)
     private Integer nbPossession;
 
-    @Column(unique=true)
+    @Column(unique =false)
     private String urlPhoto;
 
     @ManyToOne(optional = false)
