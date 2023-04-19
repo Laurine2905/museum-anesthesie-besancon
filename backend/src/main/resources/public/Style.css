@@ -471,7 +471,7 @@ iframe{
 }
 
 #collectionsJS{
-    margin: 20px;
+    margin: 15px;
     max-width: 100%;
     display: inline-block;
 }
@@ -483,8 +483,8 @@ iframe{
 }
 
 #liste_categories li{
-    margin: auto;
     text-align: center;
+    margin: 15px;
     display: inline-block;
 }
 
@@ -521,7 +521,6 @@ iframe{
 #objet .description{
     text-align: justify;
 }
-
 
 /* visite virtuelle */
 
