@@ -36,7 +36,7 @@
         </nav>
     </header>
     <div id="img_tarifs">
-        <aside class="col1">
+        <aside class="col1"> <!-- La col1 est à gauche de la page -->
             <img id="St_Jacques" src="Images/st_jacques.jpg" alt="Photo d'archive de la cour d'honneur" />
             <iframe 
                 title="Carte indiaquant la localisation du musée"
@@ -44,7 +44,8 @@
                 allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </aside>
-        <aside class="col2">
+        <aside class="col2"> <!-- La col1 est à droite de la page -->
+            <!-- Pour chaque section de la colonne de droite on crée une <table> -->
             <table id="horaires">
                 <caption>Horaires de Visite</caption>
                 <tbody>
@@ -105,13 +106,18 @@
                 </tbody>
             </table>
             <hr>
-            <p id="map">Accès</p>
-            <p id="instructions_acces">
-                Adresse : 2 place Saint Jacques, 25000 Besançon <br><br>
-                Rendez-vous devant l’entrée de l’Hôpital Saint-Jacques, rue de l’Orme de Chamars <br><br>
-                Indications : Suivre le fléchage "Hôpital Saint Jacques" Centre ville <br><br>
-                Parking : stationnement sur le parking de la mairie, en face de l'hôpital
-            </p>
+            <table id="map">
+                <caption>Accès</caption>
+                <tbody>
+                <tr>
+                    <td>Adresse : 2 place Saint Jacques, 25000 Besançon <br><br>
+                        Rendez-vous devant l’entrée de l’Hôpital Saint-Jacques, rue de l’Orme de Chamars <br><br>
+                        Indications : Suivre le fléchage "Hôpital Saint Jacques" Centre ville <br><br>
+                        Parking : stationnement sur le parking de la mairie, en face de l'hôpital
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </aside>
     </div>
 </body>
