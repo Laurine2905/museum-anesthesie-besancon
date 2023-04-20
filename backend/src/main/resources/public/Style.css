@@ -372,12 +372,12 @@ table{
     margin: 0px;
 }
 
-#col1{
+.col1{
     padding: 0px;
     margin: 0px;
 }
 
-#col2 caption{
+.col2 caption{
     margin-top: 10px;
     margin-bottom: 10px;
     text-transform: uppercase;
@@ -385,16 +385,16 @@ table{
     text-align: center;
 }
 
-#col2{
+.col2{
     padding: 0px;
     margin: 0px;
 }
 
-#col2 tr{
+.col2 tr{
     width: 100%;
 }
 
-#col2 td{
+.col2 td{
     height: 25px;
     margin: 0px;
     padding: 0px 20px;
