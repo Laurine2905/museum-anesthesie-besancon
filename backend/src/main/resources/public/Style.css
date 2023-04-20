@@ -128,6 +128,10 @@ nav ul li:hover .sous{display: block;}     /* affiche le sous menu quand la sour
     color: rgb(255,121,0);
 }
 
+/* --------------------------------------------------------------------------- */
+/* --------------------------------- accueil --------------------------------- */
+/* --------------------------------------------------------------------------- */
+
 /*corp de la page d'accueil*/
 
 #modelisation_bloc{
@@ -348,9 +352,12 @@ footer a{
 }
 
 
-/* infos-pratiques */
+/* --------------------------------------------------------------------------- */
+/* ----------------------------- infos-pratiques ----------------------------- */
+/* --------------------------------------------------------------------------- */
 
-#img_tarifs{
+
+#infos{
     display: grid;
     grid-template-columns: 60% 40%;
     grid-gap: 0px;
@@ -426,27 +433,9 @@ iframe{
     font-style: italic;
 }
 
-/* Esapce administrateur */
-
-.type_action{
-    display: inline-block;
-    width: 33%;
-    padding: 20px 0;
-    margin: 0;
-    text-align: center;
-}
-
-#action li{
-    list-style-type: none;
-}
-
-.type_action p{
-    text-transform: uppercase;
-    font-weight: bolder;
-}
-
-
-/* nos collections */
+/* --------------------------------------------------------------------------- */
+/* ----------------------------- nos collections ----------------------------- */
+/* --------------------------------------------------------------------------- */
 
 #texte_collection{
     padding: 10px 20px;
